@@ -1,0 +1,73 @@
+<ul
+  ngbNav
+  #nav="ngbNav"
+  [activeId]="1"
+  class="nav justify-content-center bg-secondary"
+>
+  <li [ngbNavItem]="1">
+    <a ngbNavLink>
+      <button class="btn text-bg-secondary">Inicio</button>
+    </a>
+    <ng-template ngbNavContent>
+      <p>iframe de inicio</p>
+    </ng-template>
+  </li>
+  <li [ngbNavItem]="2">
+    <a ngbNavLink>
+      <button class="btn text-bg-secondary">Nosotros</button>
+    </a>
+
+    <ng-template ngbNavContent>
+      <p>iframe de nosotros</p>
+    </ng-template>
+  </li>
+  <li [ngbNavItem]="3">
+    <a ngbNavLink>
+      <button class="btn text-bg-secondary">Servicios</button>
+    </a>
+    <ng-template ngbNavContent>
+      <p>iframe de servicios</p>
+    </ng-template>
+  </li>
+  <li [ngbNavItem]="4">
+    <a ngbNavLink>
+      <button class="btn text-bg-secondary">Tarifas</button>
+    </a>
+    <ng-template ngbNavContent>
+      <p>iframe de Tarifas</p>
+    </ng-template>
+  </li>
+  <li [ngbNavItem]="5">
+    <a ngbNavLink>
+      <button class="btn text-bg-secondary">Cotizador</button>
+    </a>
+    <ng-template ngbNavContent>
+      <p>iframe de cotizador</p>
+    </ng-template>
+  </li>
+  <li [ngbNavItem]="6">
+    <a ngbNavLink>
+      <button class="btn text-bg-secondary">Contacto</button>
+    </a>
+    <ng-template ngbNavContent>
+      <p>iframe de contacto</p>
+    </ng-template>
+  </li>
+  <li [ngbNavItem]="7">
+    <a ngbNavLink>
+      <button class="btn btn-light text-danger" (click)="IFrameLogin()">
+        Zona clientes
+      </button>
+    </a>
+
+    <ng-template ngbNavContent>
+      <iframe
+        [src]="urlFrame"
+        frameborder="0"
+        width="100%"
+        style="height: 99vh"
+      ></iframe>
+    </ng-template>
+  </li>
+</ul>
+<div [ngbNavOutlet]="nav" class="mt-2"></div>

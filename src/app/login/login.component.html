@@ -1,0 +1,38 @@
+<div class="card">
+  <div class="row justify-content-center">
+    <div class="col-4">
+      <div class="card cardLogin">
+        <div class="card">
+          <div class="card-body cardInternal">
+            <h5 style="text-align: center">Iniciar sesión</h5>
+            <div class="mb-2">
+              <input
+                type="text"
+                name="usuario"
+                class="form-control text-secondary"
+                [(ngModel)]="login.usuario"
+                placeholder="Correo electronico"
+              />
+            </div>
+            <div class="mb-2">
+              <input
+                type="password"
+                name="password"
+                class="form-control text-secondary"
+                [(ngModel)]="login.contrasena"
+                placeholder="Ingrese su contraseña"
+              />
+            </div>
+            <button
+              class="btn btn-danger"
+              style="height: 25%; width: 100%"
+              (click)="Login()"
+            >
+              Ingresar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

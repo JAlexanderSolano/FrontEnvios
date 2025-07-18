@@ -1,0 +1,21 @@
+.estilonav {
+  color: red;
+  cursor: pointer;
+}
+.accionPush:active {
+  background-color: red;
+  color: white;
+}
+.accionPush:hover {
+  background-color: rgba(33, 37, 41, 0.75);
+  color: white;
+}
+.izquierda {
+  scrollbar-width: none;
+  height: auto;
+  background-color: #ddd;
+}
+.derecha {
+  height: 65vh;
+  scrollbar-width: none;
+}

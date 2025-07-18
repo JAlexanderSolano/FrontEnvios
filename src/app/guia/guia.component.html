@@ -1,0 +1,171 @@
+<div class="card noneScroll">
+  <h2 class="text-center text-secondary">CREAR GUIA</h2>
+  <div class="card-body">
+    <div class="mb-2">
+      <input
+        type="text"
+        class="form-control text-secondary"
+        [(ngModel)]="guia.destinatario"
+        placeholder="Nombre de destinatario *"
+      />
+    </div>
+    <div class="mb-2">
+      <input
+        type="text"
+        class="form-control text-secondary"
+        [(ngModel)]="guia.direccion_destinatario"
+        placeholder="Dirección de destinatario *"
+      />
+    </div>
+    <div class="mb-2">
+      <select class="form-control text-secondary" [(ngModel)]="guia.ciudad">
+        <option value="0">Seleccione una ciudad</option>
+        <option value="1">Medellin</option>
+        <option value="2">Argelia</option>
+      </select>
+    </div>
+    <div class="mb-2">
+      <input
+        type="text"
+        class="form-control text-secondary"
+        [(ngModel)]="guia.tipo_documento"
+        placeholder="Tipo de documento *"
+      />
+    </div>
+    <div class="mb-2">
+      <input
+        type="text"
+        class="form-control text-secondary"
+        [(ngModel)]="guia.documento"
+        placeholder="Documento de destinatario *"
+      />
+    </div>
+    <div class="mb-2">
+      <input
+        type="text"
+        class="form-control text-secondary"
+        [(ngModel)]="guia.celular"
+        placeholder="Celular de destinatario *"
+      />
+    </div>
+    <div class="mb-2">
+      <input
+        type="text"
+        class="form-control text-secondary"
+        [(ngModel)]="guia.telefono"
+        placeholder="Telefono de destinatario *"
+      />
+    </div>
+    <div class="mb-2">
+      <input
+        type="text"
+        class="form-control text-secondary"
+        [(ngModel)]="guia.email"
+        placeholder="Email de destinatario *"
+      />
+    </div>
+    <div class="mb-2">
+      <select class="form-control text-secondary" [(ngModel)]="guia.tipo_pago">
+        <option value="0">Seleccione tipo de pago</option>
+        <option value="1">Efectivo</option>
+        <option value="2">Transferencia</option>
+        <option value="3">QR</option>
+      </select>
+    </div>
+    <div class="mb-2">
+      <div class="form-check">
+        <input
+          type="checkbox"
+          class="form-check-input text-secondary"
+          [(ngModel)]="guia.carta_porte"
+        />
+        <label for="checkDefault" class="form-check-label text-danger fs-6"
+          >Carta de porte</label
+        >
+      </div>
+    </div>
+    <div class="mb-2">
+      <input
+        type="text"
+        class="form-control text-secondary"
+        [(ngModel)]="guia.valor_total_declarado"
+        placeholder="Valor total declarado mercancia (pesos)*"
+      />
+    </div>
+    <div class="mb-2">
+      <input
+        type="text"
+        class="form-control text-secondary"
+        [(ngModel)]="guia.unidades"
+        placeholder="Unidades*"
+      />
+    </div>
+    <div class="mb-2">
+      <input
+        type="text"
+        class="form-control text-secondary"
+        [(ngModel)]="guia.kilos_reales"
+        placeholder="Kilos reales(Kg)*"
+      />
+    </div>
+    <div class="mb-2">
+      <div class="form-check">
+        <input
+          type="checkbox"
+          class="form-check-input text-secondary"
+          [(ngModel)]="guia.uso_medidas"
+        />
+        <label for="checkDefault" class="form-check-label text-danger fs-6"
+          >Usar medidas</label
+        >
+      </div>
+    </div>
+    <div class="mb-2">
+      <input
+        type="text"
+        class="form-control text-secondary"
+        [(ngModel)]="guia.kilogramos_reales"
+        placeholder="Kilogramos volumen(Largo x Alto x Ancho)*"
+      />
+    </div>
+    <div class="mb-2">
+      <input
+        type="text"
+        class="form-control text-secondary"
+        [(ngModel)]="guia.descripcion_contenido"
+        placeholder="Descripción de contenido"
+      />
+    </div>
+    <div class="mb-2">
+      <input
+        type="text"
+        class="form-control text-secondary"
+        [(ngModel)]="guia.observaciones"
+        placeholder="Observaciones"
+      />
+    </div>
+    <div class="mb-2">
+      <input
+        type="text"
+        class="form-control text-secondary"
+        [(ngModel)]="guia.documento_remitente"
+        placeholder="Documento remitente"
+      />
+    </div>
+    <div class="dropdown-divider"></div>
+    <div class="mb-2">
+      <div class="d-grid gap-2">
+        <button class="btn btn-danger">Adjuntar guia</button>
+      </div>
+    </div>
+    <div class="dropdown-divider"></div>
+    <div class="dropdown-divider"></div>
+    <div class="dropdown-divider"></div>
+    <div class="dropdown-divider"></div>
+    <div class="mb-2">
+      <div class="d-grid gap-2">
+        <button class="btn btn-danger">Regresar</button>
+      </div>
+    </div>
+  </div>
+</div>

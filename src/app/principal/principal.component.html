@@ -1,0 +1,81 @@
+<div class="row justify-content-center">
+  <div class="col-5 izquierda">
+    <div class="card">
+      <div class="card-body izquierda">
+        <div class="d-flex izquierda">
+          <div
+            ngbNav
+            #nav="ngbNav"
+            [(activeId)]="active"
+            class="nav nav-underline flex-column"
+            orientation="vertical"
+          >
+            <li ngbDropdown class="nav-item" role="presentation">
+              <a class="nav-link" class="estilonav" ngbDropdownToggle
+                >Tarifas</a
+              >
+              <div ngbDropdownMenu></div>
+            </li>
+            <div class="dropdown-divider"></div>
+            <li ngbDropdown class="nav-item" role="presentation">
+              <a class="nav-link" class="estilonav" ngbDropdownToggle
+                >Directorio</a
+              >
+              <div ngbDropdownMenu></div>
+            </li>
+            <div class="dropdown-divider"></div>
+            <li ngbDropdown class="nav-item" role="presentation">
+              <a class="nav-link" class="estilonav" ngbDropdownToggle>Guias</a>
+              <div ngbDropdownMenu>
+                <button
+                  ngbDropdownItem
+                  class="accionPush"
+                  (click)="solicitarGuia()"
+                >
+                  Solicitar guia individual
+                </button>
+                <div class="dropdown-divider"></div>
+                <button ngbDropdownItem class="accionPush">
+                  Solicitar guia masiva
+                </button>
+                <div class="dropdown-divider"></div>
+                <button ngbDropdownItem class="accionPush">
+                  Lista de guias
+                </button>
+                <div class="dropdown-divider"></div>
+                <button ngbDropdownItem class="accionPush">API</button>
+              </div>
+            </li>
+            <div class="dropdown-divider"></div>
+            <li ngbDropdown class="nav-item" role="presentation">
+              <a class="nav-link" class="estilonav" ngbDropdownToggle
+                >Relación de despacho</a
+              >
+              <div ngbDropdownMenu></div>
+            </li>
+            <div class="dropdown-divider"></div>
+            <button class="btn btn-outline-secondary" (click)="cerrarSesion()">
+              Salir
+            </button>
+          </div>
+
+          <div [ngbNavOutlet]="nav" class="ms-4"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-7 derecha">
+    <div class="card">
+      <div class="card-body derecha">
+        <iframe
+          src=""
+          frameborder="0"
+          [src]="urlFrame"
+          width="100%"
+          height="100%"
+        >
+        </iframe>
+      </div>
+    </div>
+  </div>
+</div>
