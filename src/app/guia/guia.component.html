@@ -53,7 +53,7 @@
         type="text"
         class="form-control text-secondary"
         [(ngModel)]="guia.telefono"
-        placeholder="Telefono de destinatario *"
+        placeholder="Teléfono de destinatario *"
       />
     </div>
     <div class="mb-2">
@@ -155,7 +155,10 @@
     <div class="dropdown-divider"></div>
     <div class="mb-2">
       <div class="d-grid gap-2">
-        <button class="btn btn-danger">Adjuntar guia</button>
+        <button class="btn btn-danger" (click)="ProcesarGuia()"               
+            >Adjuntar guia
+        
+        </button>
       </div>
     </div>
     <div class="dropdown-divider"></div>
