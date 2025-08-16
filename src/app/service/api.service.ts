@@ -6,10 +6,12 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ApiService {
-  private URLAPI = 'https://localhost:7172/api';
+  
+  //private URLAPI = 'https://localhost:7172/api';
+  private URLAPI = 'http://192.168.2.112:6031/api';
 
   constructor(private http: HttpClient) { }
-
+  
   public Login(data: any):Observable<any[]> {
      const headers = new HttpHeaders({
       'Content-Type': 'application/json',

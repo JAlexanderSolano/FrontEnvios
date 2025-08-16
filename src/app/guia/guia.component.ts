@@ -46,6 +46,7 @@ export class GuiaComponent implements OnInit {
 
     ProcesarGuia() {
         let token = this.localStorage.getItem('token');
+        console.log(this.guia)
         this.apiService.GuardarGuia( token, this.guia).subscribe((res: any) => {
         this.visualizarRespuesta(res);          
         }
