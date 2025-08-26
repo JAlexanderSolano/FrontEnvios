@@ -6,7 +6,7 @@
 >
   <li [ngbNavItem]="1">
     <a ngbNavLink>
-      <button class="btn text-bg-secondary">Inicio</button>
+      <button class="btn text-bg-secondary">INICIO</button>
     </a>
     <ng-template ngbNavContent>
       <p>iframe de inicio</p>
@@ -14,7 +14,7 @@
   </li>
   <li [ngbNavItem]="2">
     <a ngbNavLink>
-      <button class="btn text-bg-secondary">Nosotros</button>
+      <button class="btn text-bg-secondary">NOSOTROS</button>
     </a>
 
     <ng-template ngbNavContent>
@@ -23,7 +23,7 @@
   </li>
   <li [ngbNavItem]="3">
     <a ngbNavLink>
-      <button class="btn text-bg-secondary">Servicios</button>
+      <button class="btn text-bg-secondary">SERVICIOS</button>
     </a>
     <ng-template ngbNavContent>
       <p>iframe de servicios</p>
@@ -31,7 +31,7 @@
   </li>
   <li [ngbNavItem]="4">
     <a ngbNavLink>
-      <button class="btn text-bg-secondary">Tarifas</button>
+      <button class="btn text-bg-secondary">TARIFAS</button>
     </a>
     <ng-template ngbNavContent>
       <p>iframe de Tarifas</p>
@@ -39,27 +39,34 @@
   </li>
   <li [ngbNavItem]="5">
     <a ngbNavLink>
-      <button class="btn text-bg-secondary">Cotizador</button>
+      <button class="btn text-bg-secondary">COTIZADOR</button>
     </a>
     <ng-template ngbNavContent>
       <p>iframe de cotizador</p>
     </ng-template>
   </li>
   <li [ngbNavItem]="6">
-    <a ngbNavLink>
-      <button class="btn text-bg-secondary">Contacto</button>
+      <a ngbNavLink>
+        <button class="btn text-bg-secondary"  (click)="IFrameContacto()">
+          CONTACTO
+        </button>
     </a>
     <ng-template ngbNavContent>
-      <p>iframe de contacto</p>
-    </ng-template>
+          <iframe
+            [src]="urlFrame"
+            frameborder="0"
+            width="100%"
+            style="height: 99vh"
+          ></iframe>
+        </ng-template>
+
   </li>
   <li [ngbNavItem]="7">
     <a ngbNavLink>
       <button class="btn btn-light text-danger" (click)="IFrameLogin()">
-        Zona clientes
+        Zona Clientes
       </button>
     </a>
-
     <ng-template ngbNavContent>
       <iframe
         [src]="urlFrame"

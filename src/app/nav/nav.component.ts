@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DomSanitizer, SafeResourceUrl  } from '@angular/platform-browser';
+import { DomSanitizer  } from '@angular/platform-browser';
 import { NgbDropdownModule, NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -16,7 +16,15 @@ export class NavComponent implements OnInit {
   constructor(private sanitizer: DomSanitizer) {}
   ngOnInit(): void {}
 
+
+  IFrameContacto(){ 
+    this.urlFrame = this.sanitizer.bypassSecurityTrustResourceUrl('/contacto')
+  }
+
+
   IFrameLogin() {
     this.urlFrame = this.sanitizer.bypassSecurityTrustResourceUrl('/login');
   }
+
+
 }

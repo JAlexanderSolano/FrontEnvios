@@ -1,4 +1,6 @@
+
 import { NgModule } from '@angular/core';
+
 import {
   BrowserModule,
   provideClientHydration,
@@ -15,6 +17,8 @@ import { GuiaComponent } from './guia/guia.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { ListaguiasComponent } from './listaguias/listaguias.component';
+import { ContactoComponent } from './contacto/contacto.component';
+import { ClientesListComponent } from './clientes-list/clientes-list.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +29,8 @@ import { ListaguiasComponent } from './listaguias/listaguias.component';
     PrincipalComponent,
     GuiaComponent,
     ListaguiasComponent,
+    ContactoComponent,
+    ClientesListComponent,
   ],
   imports: [
     BrowserModule,

@@ -16,7 +16,7 @@ export class AppComponent implements OnInit {
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe((event: any) => {
-        const rutasSinHeaer = ['/login', '/principal', '/guia'];
+        const rutasSinHeaer = ['/login', '/principal', '/guia', '/contacto'];
         this.showheader = !rutasSinHeaer.includes(event.url);
       });
   }

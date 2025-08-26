@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+
 import { Router } from '@angular/router';
+
 import { ApiService } from '../service/api.service';
+
 import { LocalStorageService } from '../service/localstorage.service';
 import { MensajesSwalComponent } from '../mensajes-swal/mensajes-swal.component';
 

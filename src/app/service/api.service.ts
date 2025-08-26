@@ -27,4 +27,12 @@ export class ApiService {
     return this.http.post<any>(`${this.URLAPI}/Guia/GuardarGuia`, data, { headers });
   }
 
+    public getClientes(): Observable<any[]> {
+      const url = 'https://68aaf844909a5835049d7391.mockapi.io/clientes';
+      return this.http.get<any[]>(url);
+
+    }
+
+
+
 }
