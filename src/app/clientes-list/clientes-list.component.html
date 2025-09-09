@@ -1,0 +1,110 @@
+
+<div class="mb-3">
+  <input type="text"
+         class="form-control"
+         placeholder="Buscar cliente por nombre..."
+         [(ngModel)]="filtroNombre"
+         (ngModelChange)="filtrarClientes()" />
+</div>
+
+<!-- Tabla de clientes -->
+<table class="table table-striped table-hover table-bordered align-middle">
+  <thead class="rounded-header">
+    <tr>
+      <th scope="col">Nombre</th>
+      <th scope="col">Documento</th>
+      <th scope="col">Ciudad</th>
+      <th scope="col">Celular</th>
+      <th scope="col">Email</th>
+      <th scope="col">Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let cliente of clientes">
+      <td>{{ cliente.nombres  + ' ' + cliente.apellidos }}</td>
+      <td>{{ cliente.tipoDocumento + ' '+cliente.documento }}</td>
+      <td>{{ cliente.ciudad }}</td>
+      <td>{{ cliente.celular }}</td>
+      <td>{{ cliente.email }}</td>
+
+      <td>
+        <button class="btn btn-sm btn-danger"
+                (click)="seleccionarCliente(cliente)">
+          <i class="bi bi-trash"></i> Eliminar
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- Formulario para agregar cliente -->
+<div class="card mb-4">
+  <div class="card-header bg-primary text-white">Agregar nuevo cliente</div>
+  <div class="card-body">
+    <form (ngSubmit)="agregarCliente()" #clienteForm="ngForm">
+      <div class="mb-3">
+        <label for="Nombres" class="form-label">Nombres</label>
+        <input type="text" id="Nombres" class="form-control" [(ngModel)]="nuevoCliente.nombres" name="Nombres" required />
+      </div>
+      <div class="mb-3">
+        <label for="Apellidos" class="form-label">Apellidos</label>
+        <input type="text" id="Apellidos" class="form-control" [(ngModel)]="nuevoCliente.apellidos" name="Apellidos" required />
+      </div>
+
+      <div class="mb-3">
+        <label for="TipoDocumento" class="form-label">TipoDocumento</label>
+        <input type="text" id="TipoDocumento" class="form-control" [(ngModel)]="nuevoCliente.tipoDocumento" name="TipoDocumento" required />
+      </div>
+
+      <div class="mb-3">
+        <label for="Documento" class="form-label">Documento</label>
+        <input type="text" id="Documento" class="form-control" [(ngModel)]="nuevoCliente.documento" name="Documento" required />
+      </div>
+
+
+      <div class="mb-3">
+        <label for="Ciudad" class="form-label">Ciudad</label>
+        <input type="text" id="Ciudad" class="form-control" [(ngModel)]="nuevoCliente.ciudad" name="Ciudad" required />
+      </div>
+
+      <div class="mb-3">
+        <label for="Celular" class="form-label">Celular</label>
+        <input type="text" id="Celular" class="form-control" [(ngModel)]="nuevoCliente.celular" name="Celular" required />
+      </div>
+
+      <div class="mb-3">
+        <label for="Telefono" class="form-label">Telefono</label>
+        <input type="text" id="Telefono" class="form-control" [(ngModel)]="nuevoCliente.telefono" name="Telefono" required />
+      </div>
+
+      <div class="mb-3">
+        <label for="Email" class="form-label">Email</label>
+        <input type="text" id="Email" class="form-control" [(ngModel)]="nuevoCliente.email" name="Email" required />
+      </div>
+
+      <button type="submit" class="btn btn-success" [disabled]="clienteForm.invalid">Agregar</button>
+    </form>
+  </div>
+</div>
+
+
+<!-- Modal de confirmación -->
+<div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-danger text-white">
+        <h5 class="modal-title" id="confirmModalLabel">Confirmar eliminación</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body">
+        ¿Estás seguro de que deseas eliminar al cliente <strong>{{ clienteSeleccionado?.nombres + ' ' + clienteSeleccionado?.apellidos }}</strong>?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-danger" (click)="confirmarEliminacion()" data-bs-dismiss="modal">
+          Sí, eliminar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

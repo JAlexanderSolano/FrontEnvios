@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { ApiService } from '../service/api.service';
+import { LocalStorageService } from '../service/localstorage.service';
+import { MensajesSwalComponent } from '../mensajes-swal/mensajes-swal.component';
 
 @Component({
   selector: 'app-guia',
@@ -28,9 +32,32 @@ export class GuiaComponent implements OnInit {
     documento_remitente: '',
   };
   responseCiudades: any;
+    constructor(
+      private mensaje: MensajesSwalComponent,
+      private apiService: ApiService,
+      private localStorage: LocalStorageService
+    )  {}
 
   ngOnInit(): void {
     this.guia.ciudad = '0';
     this.guia.tipo_pago = '0';
   }
+
+
+    ProcesarGuia() {
+        let token = this.localStorage.getItem('token');
+        console.log(this.guia)
+        this.apiService.GuardarGuia( token, this.guia).subscribe((res: any) => {
+        this.visualizarRespuesta(res);          
+        }
+    );
+    }
+    visualizarRespuesta(data: any  ) {
+      this.mensaje.MostrarMensaje(
+        'success',
+        'Guía procesada',
+        'La guía ha sido procesada correctamente.'
+      );
+    }
 }
+

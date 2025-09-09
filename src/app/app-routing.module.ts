@@ -4,6 +4,11 @@ import { NavComponent } from './nav/nav.component';
 import { LoginComponent } from './login/login.component';
 import { GuiaComponent } from './guia/guia.component';
 import { PrincipalComponent } from './principal/principal.component';
+import { ContactoComponent } from './contacto/contacto.component';
+import { ClientesListComponent } from './clientes-list/clientes-list.component';
+
+
+
 
 const routes: Routes = [
   {
@@ -22,6 +27,14 @@ const routes: Routes = [
     path: 'principal',
     component: PrincipalComponent,
   },
+  {
+    path: 'contacto',
+    component: ContactoComponent,
+  },
+   { path: 'clientes', component: ClientesListComponent }
+
+
+  
 ];
 
 @NgModule({

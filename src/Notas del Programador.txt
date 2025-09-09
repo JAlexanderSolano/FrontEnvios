@@ -1,0 +1,5 @@
+Esto es para cuando voy a correr el proyecto en desarollo
+ng serve --configuration development
+
+Esto es para cuando voy a generar el codigo para produccion
+ng build --configuration=production
