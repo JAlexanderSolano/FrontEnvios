@@ -1,5 +1,5 @@
 <div class="row justify-content-center">
-  <div class="col-5 izquierda">
+  <div class="col-3 izquierda">
     <div class="card">
       <div class="card-body izquierda">
         <div class="d-flex izquierda">
@@ -18,9 +18,17 @@
             <div class="dropdown-divider"></div>
             <li ngbDropdown class="nav-item" role="presentation">
               <a class="nav-link" class="estilonav" ngbDropdownToggle
-                >Directorio</a
-              >
-              <div ngbDropdownMenu></div>
+                >Directorio</a>
+              <div ngbDropdownMenu>
+                    <button
+                  ngbDropdownItem
+                  class="accionPush"
+                  (click)="consultarClientes()"
+                >
+                  Consultar Clientes
+                </button>
+
+              </div>
             </li>
             <div class="dropdown-divider"></div>
             <li ngbDropdown class="nav-item" role="presentation">
@@ -33,7 +41,9 @@
                 >
                   Solicitar guia individual
                 </button>
-                <div class="dropdown-divider"></div>
+                <div class="dropdown-divider">
+
+                </div>
                 <button ngbDropdownItem class="accionPush">
                   Solicitar guia masiva
                 </button>
@@ -53,7 +63,8 @@
               <div ngbDropdownMenu></div>
             </li>
             <div class="dropdown-divider"></div>
-            <button class="btn btn-outline-secondary" (click)="cerrarSesion()">
+            <button class="btn btn-light text-danger" (click)="cerrarSesion()">
+                        
               Salir
             </button>
           </div>
@@ -63,7 +74,7 @@
       </div>
     </div>
   </div>
-  <div class="col-7 derecha">
+  <div class="col-9 derecha">
     <div class="card">
       <div class="card-body derecha">
         <iframe

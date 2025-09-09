@@ -20,6 +20,10 @@ import { ListaguiasComponent } from './listaguias/listaguias.component';
 import { ContactoComponent } from './contacto/contacto.component';
 import { ClientesListComponent } from './clientes-list/clientes-list.component';
 
+import { HttpClientModule } from '@angular/common/http';
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,6 +42,7 @@ import { ClientesListComponent } from './clientes-list/clientes-list.component';
     NgbModule,
     ReactiveFormsModule,
     FormsModule,
+    HttpClientModule
   ],
   providers: [
     provideClientHydration(),
