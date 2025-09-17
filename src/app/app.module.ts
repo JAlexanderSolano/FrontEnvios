@@ -21,6 +21,7 @@ import { ContactoComponent } from './contacto/contacto.component';
 import { ClientesListComponent } from './clientes-list/clientes-list.component';
 
 import { HttpClientModule } from '@angular/common/http';
+import { DestinatarioComponent } from './destinatario/destinatario.component';
 
 
 
@@ -35,6 +36,7 @@ import { HttpClientModule } from '@angular/common/http';
     ListaguiasComponent,
     ContactoComponent,
     ClientesListComponent,
+    DestinatarioComponent,
   ],
   imports: [
     BrowserModule,

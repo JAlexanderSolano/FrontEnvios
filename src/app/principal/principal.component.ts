@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { DomSanitizer, SafeResourceUrl} from '@angular/platform-browser';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -14,23 +14,20 @@ export class PrincipalComponent implements OnInit {
   active = 'top';
   urlFrame: any = '';
   constructor(private sanitizer: DomSanitizer, private router: Router) {}
-  ngOnInit(): void {
-
-
-    
-  }
+  ngOnInit(): void {}
 
   solicitarGuia() {
     this.urlFrame = this.sanitizer.bypassSecurityTrustResourceUrl('/guia');
   }
 
-  consultarClientes()
-  {
+  consultarClientes() {
     this.urlFrame = this.sanitizer.bypassSecurityTrustResourceUrl('/clientes');
   }
 
-
-
+  gestionarDestinatario() {
+    this.urlFrame =
+      this.sanitizer.bypassSecurityTrustResourceUrl('/destinatario');
+  }
 
   cerrarSesion() {
     this.router.navigate(['login']);

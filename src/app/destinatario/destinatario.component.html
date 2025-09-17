@@ -1,0 +1,75 @@
+<div class="mb-3">
+  <input
+    type="text"
+    class="form-control"
+    placeholder="Buscar destinatario..."
+    [(ngModel)]="filtroDestinatario"
+    (ngModelChange)="filtrarDestinatarios()"
+  />
+</div>
+<!-- Tabla de destinatarios  -->
+<table class="table table-striped table-hover table-bordered align-middle">
+  <thead class="rounded-header">
+    <tr>
+      <th scope="col">Nombre</th>
+      <th scope="col">Dirección</th>
+      <th scope="col">Ciudad</th>
+      <th scope="col">Departamento</th>
+      <th scope="col">Tipo Documento</th>
+      <th scope="col">Documento</th>
+      <th scope="col">Celular</th>
+      <th scope="col">Teléfono</th>
+      <th scope="col">Email</th>
+      <th scope="col">Acciones</th>
+    </tr>
+  </thead>
+  <tbody></tbody>
+</table>
+
+<!-- Formulario para agregar Destinatario -->
+<div class="card mb-4">
+  <div class="card-header bg-primary text-white">
+    Agregar nuevo destinatario
+  </div>
+  <div class="card-body">
+    <form action="">
+      <div class="mb-3">
+        <label for="Nombres" class="form-label">Nombres</label>
+        <input type="text" class="form-control" />
+      </div>
+      <div class="mb-3">
+        <label for="Nombres" class="form-label">Tipo Documento</label>
+        <input type="text" class="form-control" />
+      </div>
+      <div class="mb-3">
+        <label for="Nombres" class="form-label">Documento</label>
+        <input type="text" class="form-control" />
+      </div>
+      <div class="mb-3">
+        <label for="Nombres" class="form-label">Celular</label>
+        <input type="text" class="form-control" />
+      </div>
+      <div class="mb-3">
+        <label for="Nombres" class="form-label">Telefono</label>
+        <input type="text" class="form-control" />
+      </div>
+      <div class="mb-3">
+        <label for="Nombres" class="form-label">Email</label>
+        <input type="text" class="form-control" />
+      </div>
+      <div class="mb-3">
+        <label for="Nombres" class="form-label">Dirección</label>
+        <input type="text" class="form-control" />
+      </div>
+      <div class="mb-3">
+        <label for="Nombres" class="form-label">Ciudad</label>
+        <input type="text" class="form-control" />
+      </div>
+      <div class="mb-3">
+        <label for="Nombres" class="form-label">Departamento</label>
+        <input type="text" class="form-control" />
+      </div>
+      <button type="submit" class="btn btn-success">Agregar</button>
+    </form>
+  </div>
+</div>
