@@ -56,14 +56,16 @@ export class ApiService {
     );
   }
 
-  public deleteCliente(token: any, id: number): Observable<any> {
-    const headers = new HttpHeaders({
-      Authorization: `Bearer ${token}`,
-      'Content-Type': 'application/json',
-    });
-    //  const url = `https://68aaf844909a5835049d7391.mockapi.io/clientes/${id}`;
-    return this.http.delete(`${this.URLAPI}/Clientes/DeleteCliente/${id}`, {
-      headers,
-    });
-  }
+    public deleteCliente(token:any, id: number): Observable<any> {
+              const headers = new HttpHeaders({
+                Authorization: `Bearer ${token}`,
+              'Content-Type': 'application/json',
+              });
+        //  const url = `https://68aaf844909a5835049d7391.mockapi.io/clientes/${id}`;
+          return this.http.delete(`${this.URLAPI}/Clientes/DeleteCliente/${id}`, { headers    });
+      }
+
+     // ------------------ Rafael Araujo   -------------------------------
+
+
 }
