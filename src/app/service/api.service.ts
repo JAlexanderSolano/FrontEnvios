@@ -56,16 +56,54 @@ export class ApiService {
     );
   }
 
-    public deleteCliente(token:any, id: number): Observable<any> {
-              const headers = new HttpHeaders({
-                Authorization: `Bearer ${token}`,
-              'Content-Type': 'application/json',
-              });
-        //  const url = `https://68aaf844909a5835049d7391.mockapi.io/clientes/${id}`;
-          return this.http.delete(`${this.URLAPI}/Clientes/DeleteCliente/${id}`, { headers    });
+  public deleteCliente(token: any, id: number): Observable<any> {
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    });
+    //  const url = `https://68aaf844909a5835049d7391.mockapi.io/clientes/${id}`;
+    return this.http.delete(`${this.URLAPI}/Clientes/DeleteCliente/${id}`, {
+      headers,
+    });
+  }
+
+  // ------------------ Rafael Araujo   -------------------------------
+
+  public addDestinatario(token: any, destinatario: any): Observable<any> {
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    });
+    return this.http.post<any[]>(
+      `${this.URLAPI}/Destinatarios/AddDestinatario`,
+      destinatario,
+      { headers }
+    );
+  }
+
+  public getDestinatarios(token: any): Observable<any> {
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    });
+    return this.http.get<any[]>(
+      `${this.URLAPI}/Destinatarios/GetDestinatarios`,
+      {
+        headers,
       }
+    );
+  }
 
-     // ------------------ Rafael Araujo   -------------------------------
-
-
+  public deleteDestinatario(token: any, id: any): Observable<any> {
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    });
+    return this.http.delete(
+      `${this.URLAPI}/Destinatarios/DeleteDestinatario/${id}`,
+      {
+        headers,
+      }
+    );
+  }
 }
