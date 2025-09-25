@@ -22,3 +22,6 @@ git -status                     -Valida que los cambios se hallan incluido
 git commit -m "Comentario"      -Se agrega un comentario 
 
 git push origin  Desarrollo_RA  -Se envia a git 
+
+
+
