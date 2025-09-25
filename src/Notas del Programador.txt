@@ -1,6 +1,7 @@
 Esto es para cuando voy a correr el proyecto en desarollo
 ng serve --configuration development -o
 
+
 Esto es para cuando voy a generar el codigo para produccion
 ng build --configuration=production
 
@@ -21,3 +22,6 @@ git -status                     -Valida que los cambios se hallan incluido
 git commit -m "Comentario"      -Se agrega un comentario 
 
 git push origin  Desarrollo_RA  -Se envia a git 
+
+
+

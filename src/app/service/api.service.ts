@@ -6,7 +6,9 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ApiService {
-  //private URLAPI = 'https://localhost:7172/api';
+
+                    
+ // private URLAPI = 'https://localhost:7172/api';
   private URLAPI = 'http://wsudr.emasoluciones.com.co:6031/api';
 
   constructor(private http: HttpClient) {}
@@ -22,7 +24,7 @@ export class ApiService {
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
       'Content-Type': 'application/json',
-    });
+    });                                       
     return this.http.post<any>(`${this.URLAPI}/Guia/GuardarGuia`, data, {
       headers,
     });
