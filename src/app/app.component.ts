@@ -23,6 +23,8 @@ export class AppComponent implements OnInit {
           '/contacto',
           '/clientes',
           '/destinatario',
+          '/lista-guias',
+          '/manifiesto',
         ];
         this.showheader = !rutasSinHeaer.includes(event.url);
       });

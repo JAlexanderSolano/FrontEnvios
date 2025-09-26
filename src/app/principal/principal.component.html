@@ -54,7 +54,11 @@
                   Solicitar guia masiva
                 </button>
                 <div class="dropdown-divider"></div>
-                <button ngbDropdownItem class="accionPush">
+                <button
+                  ngbDropdownItem
+                  class="accionPush"
+                  (click)="listaGuias()"
+                >
                   Lista de guias
                 </button>
                 <div class="dropdown-divider"></div>
@@ -68,7 +72,15 @@
               <a class="nav-link" class="estilonav" ngbDropdownToggle
                 >Relación de despacho</a
               >
-              <div ngbDropdownMenu></div>
+              <div ngbDropdownMenu>
+                <button
+                  ngbDropdownItem
+                  class="accionPush"
+                  (click)="listaGuias()"
+                >
+                  Manifiesto
+                </button>
+              </div>
             </li>
             <div class="dropdown-divider"></div>
             <button class="btn btn-light text-danger" (click)="cerrarSesion()">

@@ -1,1 +1,195 @@
-<p>listaguias works!</p>
+<div class="mb-3">
+  <input
+    type="text"
+    class="form-control"
+    placeholder="Buscar destinatario..."
+    [(ngModel)]="filtroDestinatario"
+    (ngModelChange)="filtrarDestinatarios()"
+  />
+</div>
+<!-- Tabla de destinatarios  -->
+<table class="table table-striped table-hover table-bordered align-middle">
+  <thead class="rounded-header">
+    <tr>
+      <th scope="col">Nombre</th>
+      <th scope="col">Dirección</th>
+      <th scope="col">Ciudad</th>
+      <th scope="col">Departamento</th>
+      <th scope="col">Documento</th>
+      <th scope="col">Celular</th>
+      <th scope="col">Teléfono</th>
+      <th scope="col">Email</th>
+      <th scope="col">Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let destinatario of destinatarios">
+      <td>{{ destinatario.nombre }}</td>
+      <td>{{ destinatario.direccion }}</td>
+      <td>{{ destinatario.ciudad }}</td>
+      <td>{{ destinatario.departamento }}</td>
+      <td>{{ destinatario.tipoDocumento + "-" + destinatario.documento }}</td>
+      <td>{{ destinatario.celular }}</td>
+      <td>{{ destinatario.telefono }}</td>
+      <td>{{ destinatario.email }}</td>
+      <td>
+        <button
+          class="btn btn-sm btn-danger"
+          (click)="seleccionarDestinatario(destinatario)"
+        >
+          <i class="bi bi-trash"></i> Eliminar
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- Formulario para agregar Destinatario -->
+<div class="card mb-4">
+  <div class="card-header bg-primary text-white">
+    Agregar nuevo destinatario
+  </div>
+  <div class="card-body">
+    <form (ngSubmit)="agregarDestinatario()" #destinatarioForm="ngForm">
+      <div class="mb-3">
+        <label for="Nombres" class="form-label">Nombres</label>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="nuevoDestinatario.nombre"
+          name="Nombres"
+          required
+        />
+      </div>
+      <div class="mb-3">
+        <label for="Nombres" class="form-label">Tipo Documento</label>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="nuevoDestinatario.tipodocumento"
+          name="TipoDocumento"
+          required
+        />
+      </div>
+      <div class="mb-3">
+        <label for="Nombres" class="form-label">Documento</label>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="nuevoDestinatario.documento"
+          name="Documento"
+          required
+        />
+      </div>
+      <div class="mb-3">
+        <label for="Nombres" class="form-label">Celular</label>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="nuevoDestinatario.celular"
+          name="Celular"
+          required
+        />
+      </div>
+      <div class="mb-3">
+        <label for="Nombres" class="form-label">Telefono</label>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="nuevoDestinatario.telefono"
+          name="Telefono"
+          required
+        />
+      </div>
+      <div class="mb-3">
+        <label for="Nombres" class="form-label">Email</label>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="nuevoDestinatario.email"
+          name="Email"
+          required
+        />
+      </div>
+      <div class="mb-3">
+        <label for="Nombres" class="form-label">Dirección</label>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="nuevoDestinatario.direccion"
+          name="Direccion"
+          required
+        />
+      </div>
+      <div class="mb-3">
+        <label for="Nombres" class="form-label">Ciudad</label>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="nuevoDestinatario.ciudad"
+          name="Ciudad"
+          required
+        />
+      </div>
+      <div class="mb-3">
+        <label for="Nombres" class="form-label">Departamento</label>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="nuevoDestinatario.departamento"
+          name="Departamento"
+          required
+        />
+      </div>
+      <button
+        type="submit"
+        class="btn btn-success"
+        [disabled]="destinatarioForm.invalid"
+      >
+        Agregar
+      </button>
+    </form>
+  </div>
+</div>
+<!-- Modal de confirmación -->
+<div
+  class="modal fade"
+  id="confirmModal"
+  tabindex="-1"
+  aria-labelledby="confirmModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-danger text-white">
+        <h5 class="modal-title" id="confirmModalLabel">
+          Confirmar eliminación
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Cerrar"
+        ></button>
+      </div>
+      <div class="modal-body">
+        ¿Estás seguro de que deseas eliminar al cliente
+        <strong>{{ destinatarioSeleccionado?.nombre }}</strong
+        >?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Cancelar
+        </button>
+        <button
+          type="button"
+          class="btn btn-danger"
+          (click)="confirmarEliminacion()"
+          data-bs-dismiss="modal"
+        >
+          Sí, eliminar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
