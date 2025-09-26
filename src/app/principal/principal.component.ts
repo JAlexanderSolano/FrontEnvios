@@ -29,6 +29,16 @@ export class PrincipalComponent implements OnInit {
       this.sanitizer.bypassSecurityTrustResourceUrl('/destinatario');
   }
 
+  listaGuias() {
+    this.urlFrame =
+      this.sanitizer.bypassSecurityTrustResourceUrl('/lista-guias');
+  }
+
+  generarManifiesto() {
+    this.urlFrame =
+      this.sanitizer.bypassSecurityTrustResourceUrl('/manifiesto');
+  }
+
   cerrarSesion() {
     this.router.navigate(['login']);
   }

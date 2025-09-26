@@ -22,6 +22,7 @@ import { ClientesListComponent } from './clientes-list/clientes-list.component';
 
 import { HttpClientModule } from '@angular/common/http';
 import { DestinatarioComponent } from './destinatario/destinatario.component';
+import { ManifiestoComponent } from './manifiesto/manifiesto.component';
 
 
 
@@ -37,6 +38,7 @@ import { DestinatarioComponent } from './destinatario/destinatario.component';
     ContactoComponent,
     ClientesListComponent,
     DestinatarioComponent,
+    ManifiestoComponent,
   ],
   imports: [
     BrowserModule,
