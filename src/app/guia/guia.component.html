@@ -32,14 +32,40 @@
         placeholder="Dirección del Destinatario *"
       />
     </div>
-    <div class="mb-2">
-      <select class="form-control text-secondary" [(ngModel)]="guia.ciudad">
-        <option value="0">Seleccione una ciudad</option>
-        <option value="1">Medellin</option>
-        <option value="2">Argelia</option>
-        <option value="3">Bogota</option>
-      </select>
+<div class="mb-2">
+  <div class="autocomplete-container">
+    <input
+      type="text"
+      class="form-control text-secondary"
+      [(ngModel)]="ciudadSearchText"
+      (input)="onSearchChange($event)"
+      (focus)="onFocus()"
+      (blur)="onBlur()"
+      placeholder="Buscar ciudad..."
+    />
+    
+    <!-- Loading indicator -->
+    <div *ngIf="loading" class="autocomplete-loading">
+      Cargando ciudades...
     </div>
+    
+    <!-- Dropdown de resultados -->
+    <div *ngIf="mostrarDropdown && ciudadesFiltradas.length > 0" 
+         class="autocomplete-dropdown">
+      <div *ngFor="let ciudad of ciudadesFiltradas" 
+           class="autocomplete-item"
+           (mousedown)="seleccionarCiudad(ciudad)">
+        {{ ciudad.ciudad }} <!-- Ajusta según la estructura de tu API -->
+      </div>
+    </div>
+    
+    <!-- Mensaje cuando no hay resultados -->
+    <div *ngIf="mostrarDropdown && ciudadesFiltradas.length === 0 && !loading" 
+         class="autocomplete-no-results">
+      No se encontraron ciudades
+    </div>
+  </div>
+</div>
 
 
      <div class="mb-2">

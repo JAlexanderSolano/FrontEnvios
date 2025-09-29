@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
   login = {
     usuario: '',
     contrasena: '',
+    cuenta: '',
   };
 
   response: any;
@@ -55,10 +56,11 @@ export class LoginComponent implements OnInit {
    if (response.resultado.state == 200 && response.resultado.token != '') {
       this.localStorage.setItem('token', response.resultado.token);
       this.localStorage.setItem('usuarioIngreso', this.login.usuario);
+      this.localStorage.setItem('cuenta', response.resultado.cuenta);
       this.mensaje.MostrarMensaje(
         'success',
         'Usuario correcto',
-        'Bienvenido Sr/ Sra ' + this.login.usuario +  this.localStorage.getItem('token')
+        'Bienvenido:' + this.login.usuario  + " " + this.localStorage.getItem('cuenta')
       );
       this.router.navigate(['principal']);
     }else if(response.resultado.state == 200 && response.resultado.token == '' ){

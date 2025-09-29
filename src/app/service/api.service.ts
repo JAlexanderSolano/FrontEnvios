@@ -108,4 +108,19 @@ export class ApiService {
       }
     );
   }
+
+//Cambios para ciudades  
+  public getCiudades(token: any): Observable<any[]> {
+  const headers = new HttpHeaders({
+    Authorization: `Bearer ${token}`,
+    'Content-Type': 'application/json',
+  });
+  return this.http.get<any[]>(`${this.URLAPI}/Destinatarios/GetCiudades`, {
+    headers,
+  });
+}
+
+
+
+
 }
