@@ -8,8 +8,8 @@ import { Observable } from 'rxjs';
 export class ApiService {
 
                     
-  private URLAPI = 'https://localhost:7172/api';
- // private URLAPI = 'http://wsudr.emasoluciones.com.co:6031/api';
+ // private URLAPI = 'https://localhost:7172/api';
+  private URLAPI = 'http://wsudr.emasoluciones.com.co:6031/api';
 
   constructor(private http: HttpClient) {}
 
