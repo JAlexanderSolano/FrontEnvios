@@ -1,5 +1,28 @@
 Esto es para cuando voy a correr el proyecto en desarollo
-ng serve --configuration development
+ng serve --configuration development -o
+
 
 Esto es para cuando voy a generar el codigo para produccion
 ng build --configuration=production
+
+
+
+-------------------------------------------------------
+Enviar una rama
+git branch                      -Valido la ramas 
+
+git checkout Desarrollo_RA      -Me cambio de rama de ser necesario
+
+git status                      -Valido los cambios a incluir
+
+git add -A                      -Agrega los cambios 
+
+git -status                     -Valida que los cambios se hallan incluido
+
+git commit -m "Comentario"      -Se agrega un comentario 
+
+git push origin  Desarrollo_RA  -Se envia a git 
+
+------------------------------------------------------------------------------------------
+-- Actualizacion 2025-09-27
+------------------------------------------------------------------------------------------

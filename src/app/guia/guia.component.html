@@ -1,12 +1,27 @@
 <div class="card noneScroll">
   <h2 class="text-center text-secondary">CREAR GUIA</h2>
+
+
+<!-- <div class="mb-2">
+  <div class="text-center">
+    <h6 class="text-secondary mb-2">Código QR para Google</h6>
+    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://www.google.com" 
+         alt="QR Code para Google" 
+         class="qr-image">
+    <small class="text-muted">Escanea este código para ir a Google.com</small>
+  </div>
+</div> -->
+
+
+
+
   <div class="card-body">
     <div class="mb-2">
       <input
         type="text"
         class="form-control text-secondary"
         [(ngModel)]="guia.destinatario"
-        placeholder="Nombre de destinatario *"
+        placeholder="Nombre del Destinatario *"
       />
     </div>
     <div class="mb-2">
@@ -14,24 +29,64 @@
         type="text"
         class="form-control text-secondary"
         [(ngModel)]="guia.direccion_destinatario"
-        placeholder="Dirección de destinatario *"
+        placeholder="Dirección del Destinatario *"
       />
     </div>
-    <div class="mb-2">
-      <select class="form-control text-secondary" [(ngModel)]="guia.ciudad">
-        <option value="0">Seleccione una ciudad</option>
-        <option value="1">Medellin</option>
-        <option value="2">Argelia</option>
+<div class="mb-2">
+  <div class="autocomplete-container">
+    <input
+      type="text"
+      class="form-control text-secondary"
+      [(ngModel)]="ciudadSearchText"
+      (input)="onSearchChange($event)"
+      (focus)="onFocus()"
+      (blur)="onBlur()"
+      placeholder="Buscar ciudad..."
+    />
+    
+    <!-- Loading indicator -->
+    <div *ngIf="loading" class="autocomplete-loading">
+      Cargando ciudades...
+    </div>
+    
+    <!-- Dropdown de resultados -->
+    <div *ngIf="mostrarDropdown && ciudadesFiltradas.length > 0" 
+         class="autocomplete-dropdown">
+      <div *ngFor="let ciudad of ciudadesFiltradas" 
+           class="autocomplete-item"
+           (mousedown)="seleccionarCiudad(ciudad)">
+        {{ ciudad.ciudad }} <!-- Ajusta según la estructura de tu API -->
+      </div>
+    </div>
+    
+    <!-- Mensaje cuando no hay resultados -->
+    <div *ngIf="mostrarDropdown && ciudadesFiltradas.length === 0 && !loading" 
+         class="autocomplete-no-results">
+      No se encontraron ciudades
+    </div>
+  </div>
+</div>
+
+
+     <div class="mb-2">
+      <select class="form-control text-secondary" [(ngModel)]="guia.tipo_pago">
+        <option value="0">Seleccione tipo de pago</option>
+        <option value="1">Efectivo</option>
+        <option value="2">Transferencia</option>
+        <option value="3">QR</option>
       </select>
     </div>
+
     <div class="mb-2">
-      <input
-        type="text"
-        class="form-control text-secondary"
-        [(ngModel)]="guia.tipo_documento"
-        placeholder="Tipo de documento *"
-      />
+      <select class="form-control text-secondary" [(ngModel)]="guia.tipo_documento">
+        <option value="">Seleccione el tipo de Documento</option>
+        <option value="CC">Cédula Ciudadania </option>
+        <option value="CE">Cédula Extrangeria</option>
+        <option value="OTRO">Otro</option>
+      </select>
     </div>
+
+
     <div class="mb-2">
       <input
         type="text"
@@ -156,15 +211,29 @@
     <div class="mb-2">
       <div class="d-grid gap-2">
         <button class="btn btn-danger" (click)="ProcesarGuia()"               
-            >Adjuntar guia
-        
+            >Crear Guia
         </button>
       </div>
     </div>
-    <div class="dropdown-divider"></div>
-    <div class="dropdown-divider"></div>
-    <div class="dropdown-divider"></div>
-    <div class="dropdown-divider"></div>
+
+    <div class="mb-2" *ngIf="mostrarQR" [class.mostrar-qr]="mostrarQR">
+      <div class="text-center">
+        <h6 class="text-secondary mb-2">Código QR de la Guia Generada</h6>
+        <img [src]="qrCodeUrl" 
+            alt="QR Code para Google" 
+            class="qr-image"
+            (error)="handleImageError($event)">
+        <small class="text-muted"></small>
+        
+        <!-- Botón para ocultar el QR (opcional) -->
+        <div class="mt-2">
+          <button class="btn btn-sm btn-outline-secondary" (click)="ocultarQR()">
+            Ocultar QR
+          </button>
+        </div>
+      </div>
+    </div>
+
     <div class="mb-2">
       <div class="d-grid gap-2">
         <button class="btn btn-danger">Regresar</button>

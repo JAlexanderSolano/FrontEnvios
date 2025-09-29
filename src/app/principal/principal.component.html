@@ -5,7 +5,8 @@
         <div class="d-flex izquierda">
           <div
             ngbNav
-            #nav="ngbNav" [(activeId)]="active"
+            #nav="ngbNav"
+            [(activeId)]="active"
             class="nav nav-underline flex-column"
             orientation="vertical"
           >
@@ -18,16 +19,23 @@
             <div class="dropdown-divider"></div>
             <li ngbDropdown class="nav-item" role="presentation">
               <a class="nav-link" class="estilonav" ngbDropdownToggle
-                >Directorio</a>
+                >Directorio</a
+              >
               <div ngbDropdownMenu>
-                    <button
+                <button
                   ngbDropdownItem
                   class="accionPush"
                   (click)="consultarClientes()"
                 >
-                  Consultar Clientes
+                  Clientes
                 </button>
-
+                <button
+                  ngbDropdownItem
+                  class="accionPush"
+                  (click)="gestionarDestinatario()"
+                >
+                  Destinatario
+                </button>
               </div>
             </li>
             <div class="dropdown-divider"></div>
@@ -41,14 +49,18 @@
                 >
                   Solicitar guia individual
                 </button>
-                <div class="dropdown-divider">
-
-                </div>
+                <div class="dropdown-divider"></div>
                 <button ngbDropdownItem class="accionPush">
                   Solicitar guia masiva
                 </button>
                 <div class="dropdown-divider"></div>
-                <button ngbDropdownItem class="accionPush">Lista de guias</button>
+                <button
+                  ngbDropdownItem
+                  class="accionPush"
+                  (click)="listaGuias()"
+                >
+                  Lista de guias
+                </button>
                 <div class="dropdown-divider"></div>
                 <button ngbDropdownItem class="accionPush">API</button>
                 <div class="dropdown-divider"></div>
@@ -60,11 +72,18 @@
               <a class="nav-link" class="estilonav" ngbDropdownToggle
                 >Relación de despacho</a
               >
-              <div ngbDropdownMenu></div>
+              <div ngbDropdownMenu>
+                <button
+                  ngbDropdownItem
+                  class="accionPush"
+                  (click)="listaGuias()"
+                >
+                  Manifiesto
+                </button>
+              </div>
             </li>
             <div class="dropdown-divider"></div>
             <button class="btn btn-light text-danger" (click)="cerrarSesion()">
-                        
               Salir
             </button>
           </div>

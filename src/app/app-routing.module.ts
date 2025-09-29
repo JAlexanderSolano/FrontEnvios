@@ -6,9 +6,9 @@ import { GuiaComponent } from './guia/guia.component';
 import { PrincipalComponent } from './principal/principal.component';
 import { ContactoComponent } from './contacto/contacto.component';
 import { ClientesListComponent } from './clientes-list/clientes-list.component';
-
-
-
+import { DestinatarioComponent } from './destinatario/destinatario.component';
+import { ListaguiasComponent } from './listaguias/listaguias.component';
+import { ManifiestoComponent } from './manifiesto/manifiesto.component';
 
 const routes: Routes = [
   {
@@ -31,10 +31,19 @@ const routes: Routes = [
     path: 'contacto',
     component: ContactoComponent,
   },
-   { path: 'clientes', component: ClientesListComponent }
-
-
-  
+  { path: 'clientes', component: ClientesListComponent },
+  {
+    path: 'destinatario',
+    component: DestinatarioComponent,
+  },
+  {
+    path: 'lista-guias',
+    component: ListaguiasComponent,
+  },
+  {
+    path: 'manifiesto',
+    component: ManifiestoComponent,
+  },
 ];
 
 @NgModule({

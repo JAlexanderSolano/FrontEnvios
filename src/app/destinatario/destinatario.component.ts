@@ -2,14 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../service/api.service';
 import { LocalStorageService } from '../service/localstorage.service';
 import { MensajesSwalComponent } from '../mensajes-swal/mensajes-swal.component';
+
 declare var bootstrap: any;
 @Component({
-  selector: 'app-listaguias',
+  selector: 'app-destinatario',
   standalone: false,
-  templateUrl: './listaguias.component.html',
-  styleUrl: './listaguias.component.css',
+  templateUrl: './destinatario.component.html',
+  styleUrls: ['./destinatario.component.css'],
 })
-export class ListaguiasComponent implements OnInit {
+export class DestinatarioComponent implements OnInit {
   filtroDestinatario: any;
   destinatarios: any[] = [];
   destinatariosOriginales: any[] = [];

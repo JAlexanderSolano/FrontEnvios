@@ -16,7 +16,16 @@ export class AppComponent implements OnInit {
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe((event: any) => {
-        const rutasSinHeaer = ['/login', '/principal', '/guia', '/contacto', '/clientes'];
+        const rutasSinHeaer = [
+          '/login',
+          '/principal',
+          '/guia',
+          '/contacto',
+          '/clientes',
+          '/destinatario',
+          '/lista-guias',
+          '/manifiesto',
+        ];
         this.showheader = !rutasSinHeaer.includes(event.url);
       });
   }
