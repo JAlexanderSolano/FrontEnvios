@@ -10,20 +10,30 @@ declare var bootstrap: any;
   styleUrl: './listaguias.component.css',
 })
 export class ListaguiasComponent implements OnInit {
-  filtroDestinatario: any;
-  destinatarios: any[] = [];
-  destinatariosOriginales: any[] = [];
-  destinatarioSeleccionado: any = null;
-  nuevoDestinatario = {
-    nombre: '',
-    tipodocumento: '',
+  filtroGuia: any;
+  listaguias: any[] = [];
+  guiassOriginales: any[] = [];
+  guiasSeleccionado: any = null;
+  nuevaGuia = {
+    destinatario: '',
+    direccion_destinatario: '',
+    ciudad: '',
+    tipo_documento: '',
     documento: '',
     celular: '',
     telefono: '',
     email: '',
-    direccion: '',
-    ciudad: '',
-    departamento: '',
+    tipo_pago: '',
+    carta_porte: '',
+    valor_total_declarado: '',
+    unidades: '',
+    kilos_reales: '',
+    uso_medidas: '',
+    kilogramos_reales: '',
+    descripcion_contenido: '',
+    observaciones: '',
+    documento_remitente: '',
+    cuenta: '',
   };
   token: any = '';
 
@@ -34,67 +44,77 @@ export class ListaguiasComponent implements OnInit {
   ) {}
   ngOnInit(): void {
     this.token = this.localStorage.getItem('token');
-    this.CargarDestinatarios(this.token);
+    this.CargarGuias(this.token);
   }
-  CargarDestinatarios(token: any) {
-    this.destinatarios = [];
-    this.destinatariosOriginales = [];
-    this.apiService.getDestinatarios(token).subscribe((data) => {
-      this.destinatariosOriginales = data;
-      this.destinatarios = [...data];
+  CargarGuias(token: any) {
+    this.listaguias = [];
+    this.guiassOriginales = [];
+    this.apiService.getGuias(token).subscribe((data) => {
+      this.guiassOriginales = data;
+      this.listaguias = [...data];
     });
   }
 
-  seleccionarDestinatario(destinatario: any) {
-    this.destinatarioSeleccionado = destinatario;
+  seleccionarGuias(destinatario: any) {
+    this.guiasSeleccionado = destinatario;
     let modalElement = document.getElementById('confirmModal');
     let modal = new bootstrap.Modal(modalElement);
     modal.show();
   }
 
-  agregarDestinatario() {
+  agregarManifiesto() {
     this.apiService
-      .addDestinatario(this.token, this.nuevoDestinatario)
+      .addManifiesto(this.token, this.nuevaGuia)
       .subscribe((res: any) => {
         this.mensajesSwal.MostrarMensaje(
           'success',
           'Destinatario Creado',
           'El destinatario ' +
-            this.nuevoDestinatario.nombre +
+            this.nuevaGuia.destinatario +
             ' ha sido credado con exitó'
         );
-        this.nuevoDestinatario = {
-          nombre: '',
-          tipodocumento: '',
+        this.nuevaGuia = {
+          destinatario: '',
+          direccion_destinatario: '',
+          ciudad: '',
+          tipo_documento: '',
           documento: '',
           celular: '',
           telefono: '',
           email: '',
-          direccion: '',
-          ciudad: '',
-          departamento: '',
+          tipo_pago: '',
+          carta_porte: '',
+          valor_total_declarado: '',
+          unidades: '',
+          kilos_reales: '',
+          uso_medidas: '',
+          kilogramos_reales: '',
+          descripcion_contenido: '',
+          observaciones: '',
+          documento_remitente: '',
+          cuenta: '',
         };
       });
-    this.CargarDestinatarios(this.token);
+    this.CargarGuias(this.token);
   }
 
   confirmarEliminacion() {
-    if (this.destinatarioSeleccionado) {
-      console.log(this.destinatarioSeleccionado);
+    if (this.guiasSeleccionado) {
+      console.log(this.guiasSeleccionado);
       this.apiService
-        .deleteDestinatario(this.token, this.destinatarioSeleccionado.id)
+        .deleteDestinatario(this.token, this.guiasSeleccionado.id)
         .subscribe((res) => {
-          this.destinatarios = this.destinatarios.filter(
-            (c: any) => c.id !== this.destinatarioSeleccionado.id
+          this.listaguias = this.listaguias.filter(
+            (c: any) => c.id !== this.guiasSeleccionado.id
           );
-          this.destinatarioSeleccionado = null;
+          this.guiasSeleccionado = null;
         });
     }
   }
 
-  filtrarDestinatarios() {
-    const filtro = this.filtroDestinatario.toLowerCase();
-    this.destinatarios = this.destinatariosOriginales.filter((dest: any) =>
+  filtrarGuias() {
+    const filtro = this.filtroGuia.toLowerCase();
+    this.listaguias = this.guiasSeleccionado.filter((dest: any) =>
       dest.nombre.toLowerCase().includes(filtro)
     );
   }

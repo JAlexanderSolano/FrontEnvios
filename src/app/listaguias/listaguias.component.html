@@ -3,90 +3,103 @@
     type="text"
     class="form-control"
     placeholder="Buscar destinatario..."
-    [(ngModel)]="filtroDestinatario"
-    (ngModelChange)="filtrarDestinatarios()"
+    [(ngModel)]="filtroGuia"
+    (ngModelChange)="filtrarGuias()"
   />
 </div>
 <!-- Tabla de destinatarios  -->
 <table class="table table-striped table-hover table-bordered align-middle">
   <thead class="rounded-header">
     <tr>
-      <th scope="col">Nombre</th>
-      <th scope="col">Dirección</th>
-      <th scope="col">Ciudad</th>
-      <th scope="col">Departamento</th>
+      <th scope="col">Fecha Generacion</th>
+      <th scope="col">Destinatario</th>
+      <th scope="col">Direccion</th>
       <th scope="col">Documento</th>
       <th scope="col">Celular</th>
       <th scope="col">Teléfono</th>
       <th scope="col">Email</th>
-      <th scope="col">Acciones</th>
+      <th scope="col">Unidades</th>
+      <th scope="col">Total</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let destinatario of destinatarios">
-      <td>{{ destinatario.nombre }}</td>
-      <td>{{ destinatario.direccion }}</td>
-      <td>{{ destinatario.ciudad }}</td>
-      <td>{{ destinatario.departamento }}</td>
-      <td>{{ destinatario.tipoDocumento + "-" + destinatario.documento }}</td>
-      <td>{{ destinatario.celular }}</td>
-      <td>{{ destinatario.telefono }}</td>
-      <td>{{ destinatario.email }}</td>
+    <tr *ngFor="let guia of listaguias">
+      <td>{{ guia.fechaDeGeneracion }}</td>
+      <td>{{ guia.destinatario }}</td>
+      <td>{{ guia.direccionDestinatario }}</td>
+      <td>{{ guia.tipoDocumento + "-" + guia.documento }}</td>
+      <td>{{ guia.celular }}</td>
+      <td>{{ guia.telefono }}</td>
+      <td>{{ guia.email }}</td>
       <td>
-        <button
-          class="btn btn-sm btn-danger"
-          (click)="seleccionarDestinatario(destinatario)"
-        >
-          <i class="bi bi-trash"></i> Eliminar
-        </button>
+        {{
+          guia.unidades +
+            "-" +
+            guia.kilosReales +
+            "-" +
+            guia.usoMedidas +
+            "-" +
+            guia.kilogramosReales
+        }}
       </td>
+      <td>{{ guia.valor_total_declarado }}</td>
     </tr>
   </tbody>
 </table>
 
 <!-- Formulario para agregar Destinatario -->
 <div class="card mb-4">
-  <div class="card-header bg-primary text-white">
-    Agregar nuevo destinatario
-  </div>
+  <div class="card-header bg-primary text-white">Agregar nueva guia</div>
   <div class="card-body">
-    <form (ngSubmit)="agregarDestinatario()" #destinatarioForm="ngForm">
+    <form (ngSubmit)="agregarManifiesto()" #destinatarioForm="ngForm">
       <div class="mb-3">
-        <label for="Nombres" class="form-label">Nombres</label>
+        <label for="Destinatario" class="form-label">Destinarario</label>
         <input
           type="text"
           class="form-control"
-          [(ngModel)]="nuevoDestinatario.nombre"
+          [(ngModel)]="nuevaGuia.destinatario"
           name="Nombres"
           required
         />
       </div>
       <div class="mb-3">
-        <label for="Nombres" class="form-label">Tipo Documento</label>
+        <label for="direccion_destinatario" class="form-label"
+          >Dirección destinatario</label
+        >
         <input
           type="text"
           class="form-control"
-          [(ngModel)]="nuevoDestinatario.tipodocumento"
-          name="TipoDocumento"
+          [(ngModel)]="nuevaGuia.direccion_destinatario"
+          name="direccion_destinatario"
           required
         />
       </div>
       <div class="mb-3">
-        <label for="Nombres" class="form-label">Documento</label>
+        <label for="tipoDocumento" class="form-label">Tipo Documento</label>
         <input
           type="text"
           class="form-control"
-          [(ngModel)]="nuevoDestinatario.documento"
-          name="Documento"
+          [(ngModel)]="nuevaGuia.tipo_documento"
+          name="tipoDocumento"
           required
         />
       </div>
       <div class="mb-3">
-        <label for="Nombres" class="form-label">Celular</label>
+        <label for="documento" class="form-label">Documento</label>
         <input
           type="text"
           class="form-control"
-          [(ngModel)]="nuevoDestinatario.celular"
+          [(ngModel)]="nuevaGuia.documento"
+          name="documento"
+          required
+        />
+      </div>
+      <div class="mb-3">
+        <label for="celular" class="form-label">Celular</label>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="nuevaGuia.celular"
           name="Celular"
           required
         />
@@ -96,7 +109,7 @@
         <input
           type="text"
           class="form-control"
-          [(ngModel)]="nuevoDestinatario.telefono"
+          [(ngModel)]="nuevaGuia.telefono"
           name="Telefono"
           required
         />
@@ -106,38 +119,126 @@
         <input
           type="text"
           class="form-control"
-          [(ngModel)]="nuevoDestinatario.email"
+          [(ngModel)]="nuevaGuia.email"
           name="Email"
           required
         />
       </div>
       <div class="mb-3">
-        <label for="Nombres" class="form-label">Dirección</label>
+        <label for="Nombres" class="form-label">Tipo Pago</label>
         <input
           type="text"
           class="form-control"
-          [(ngModel)]="nuevoDestinatario.direccion"
-          name="Direccion"
+          [(ngModel)]="nuevaGuia.tipo_pago"
+          name="tipo_pago"
           required
         />
       </div>
       <div class="mb-3">
-        <label for="Nombres" class="form-label">Ciudad</label>
+        <label for="carta_porte" class="form-label">Carta Porte</label>
         <input
           type="text"
           class="form-control"
-          [(ngModel)]="nuevoDestinatario.ciudad"
-          name="Ciudad"
+          [(ngModel)]="nuevaGuia.carta_porte"
+          name="carta_porte"
           required
         />
       </div>
       <div class="mb-3">
-        <label for="Nombres" class="form-label">Departamento</label>
+        <label for="valor_total_declarado" class="form-label"
+          >Total Declarado</label
+        >
         <input
           type="text"
           class="form-control"
-          [(ngModel)]="nuevoDestinatario.departamento"
-          name="Departamento"
+          [(ngModel)]="nuevaGuia.valor_total_declarado"
+          name="valor_total_declarado"
+          required
+        />
+      </div>
+      <div class="mb-3">
+        <label for="unidades" class="form-label">Unidades</label>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="nuevaGuia.unidades"
+          name="unidades"
+          required
+        />
+      </div>
+      <div class="mb-3">
+        <label for="kilos_reales" class="form-label">Kilos Reales</label>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="nuevaGuia.kilos_reales"
+          name="kilos_reales"
+          required
+        />
+      </div>
+      <div class="mb-3">
+        <label for="uso_medidas" class="form-label">Uso Medidas</label>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="nuevaGuia.uso_medidas"
+          name="uso_medidas"
+          required
+        />
+      </div>
+      <div class="mb-3">
+        <label for="kilogramos_reales" class="form-label"
+          >Kilogramos Reales</label
+        >
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="nuevaGuia.kilogramos_reales"
+          name="kilogramos_reales"
+          required
+        />
+      </div>
+      <div class="mb-3">
+        <label for="descripcion_contenido" class="form-label"
+          >Descripción Contenido</label
+        >
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="nuevaGuia.descripcion_contenido"
+          name="descripcion_contenido"
+          required
+        />
+      </div>
+      <div class="mb-3">
+        <label for="observaciones" class="form-label">Observaciones</label>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="nuevaGuia.observaciones"
+          name="observaciones"
+          required
+        />
+      </div>
+      <div class="mb-3">
+        <label for="documento_remitente" class="form-label"
+          >Documento Remitente</label
+        >
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="nuevaGuia.documento_remitente"
+          name="documento_remitente"
+          required
+        />
+      </div>
+      <div class="mb-3">
+        <label for="cuenta" class="form-label">Cuenta</label>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="nuevaGuia.cuenta"
+          name="cuenta"
           required
         />
       </div>
@@ -174,7 +275,7 @@
       </div>
       <div class="modal-body">
         ¿Estás seguro de que deseas eliminar al cliente
-        <strong>{{ destinatarioSeleccionado?.nombre }}</strong
+        <strong>{{ guiasSeleccionado?.destinatario }}</strong
         >?
       </div>
       <div class="modal-footer">

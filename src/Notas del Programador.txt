@@ -26,3 +26,30 @@ git push origin  Desarrollo_RA  -Se envia a git
 ------------------------------------------------------------------------------------------
 -- Actualizacion 2025-09-27
 ------------------------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------------------
+-- Comandos para subir cambios a la rama correspondiente 
+1 git stash                   --Almacena cambios en memoria 
+
+2 git branch                  --Verifica en que rama estas posicionado (Aqui deberia aparecerte en verde la rama nueva)
+
+3 git chechkout nombreRama    --Cambias de rama de desarrollo (EnviosAM)
+
+4 git pull origin nombreRama  --Traes los cambios de la rama de desarrollo (EnviosAM)
+
+Repetir el paso numero 3 colocando la rama nueva en la cual te cambiaste. 
+si necesitas validar el nombre ejecutas el comando del paso 2
+una vez cambiada a la rama ejecutamos lo siguiente
+
+5 git stash apply 
+
+6 git status 
+
+7 git add -A  (Este paso se ejecuta en caso de que el paso 6 el comando muestre en consola el 
+nombre de un archivo en color rojo indicnado que debe ser agregado)
+
+8 git commit -am "Comentario del commit o descripcion" ---> -am significa que agrega los archivos nuevos y los modificados al commit
+
+9 git push origin nombreRamaNueva
+
+10 Se hace el proceso para hacer el PR en Git
