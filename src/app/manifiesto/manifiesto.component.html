@@ -1,9 +1,8 @@
-
 <!-- Formulario para agregar Manifiesto -->
 <div class="card mb-4">
   <div class="card-header bg-primary text-white">Agregar nuevo manifiesto</div>
   <div class="card-body">
-    <form (ngSubmit)="agregarManifiesto()" #destinatarioForm="ngForm">
+    <form #destinatarioForm="ngForm">
       <div class="mb-3">
         <label for="Destinatario" class="form-label">Destinarario</label>
         <input
@@ -195,11 +194,10 @@
         />
       </div>
       <!-- [disabled]="destinatarioForm.invalid" -->
-      <button type="submit" class="btn btn-success">Agregar</button>
+      <!-- <button type="submit" class="btn btn-success">Agregar</button> -->
     </form>
   </div>
 </div>
-
 
 <div class="mb-3">
   <div class="card mb-3">
@@ -258,10 +256,11 @@
     </tr>
   </tbody>
 </table>
-
-
-
-
+<div class="mb-4">
+  <button type="button" class="btn btn-success" (click)="agregarManifiesto()">
+    Agregar
+  </button>
+</div>
 
 <!-- Modal de confirmación -->
 <div
