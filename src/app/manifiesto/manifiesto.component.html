@@ -1,62 +1,5 @@
-<div class="mb-3">
-  <div class="card mb-3">
-    <div class="card-header bg-primary text-white">
-      Lista de guías sin manifiesto
-    </div>
-  </div>
-  <input
-    type="text"
-    class="form-control"
-    placeholder="Buscar destinatario..."
-    [(ngModel)]="filtroGuia"
-    (ngModelChange)="filtrarGuias()"
-  />
-</div>
-<!-- Tabla de destinatarios  -->
-<table class="table table-striped table-hover table-bordered align-middle">
-  <thead class="rounded-header">
-    <tr>
-      <th scope="col">Selección</th>
-      <th scope="col">Fecha Generación</th>
-      <th scope="col">Destinatario</th>
-      <th scope="col">Dirección</th>
-      <th scope="col">Documento</th>
-      <th scope="col">Celular</th>
-      <th scope="col">Teléfono</th>
-      <th scope="col">Email</th>
-      <th scope="col">Unidades</th>
-      <th scope="col">Total</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let guia of listaguias">
-      <td>
-        <input type="checkbox" name="" id="" />
-      </td>
-      <td>{{ guia.fechaDeGeneracion }}</td>
-      <td>{{ guia.destinatario }}</td>
-      <td>{{ guia.direccionDestinatario }}</td>
-      <td>{{ guia.tipoDocumento + "-" + guia.documento }}</td>
-      <td>{{ guia.celular }}</td>
-      <td>{{ guia.telefono }}</td>
-      <td>{{ guia.email }}</td>
-      <td>
-        {{
-          guia.unidades +
-            "-" +
-            guia.kilosReales +
-            "-" +
-            guia.usoMedidas +
-            "-" +
-            guia.kilogramosReales
-        }}
-      </td>
-      <td>{{ guia.valor_total_declarado }}</td>
-    </tr>
-  </tbody>
-</table>
 
-<!-- Formulario para agregar Destinatario -->
+<!-- Formulario para agregar Manifiesto -->
 <div class="card mb-4">
   <div class="card-header bg-primary text-white">Agregar nuevo manifiesto</div>
   <div class="card-body">
@@ -256,6 +199,70 @@
     </form>
   </div>
 </div>
+
+
+<div class="mb-3">
+  <div class="card mb-3">
+    <div class="card-header bg-primary text-white">
+      Lista de guías sin manifiesto
+    </div>
+  </div>
+  <input
+    type="text"
+    class="form-control"
+    placeholder="Buscar destinatario..."
+    [(ngModel)]="filtroGuia"
+    (ngModelChange)="filtrarGuias()"
+  />
+</div>
+<!-- Lista Tabla de Manifiesto  -->
+<table class="table table-striped table-hover table-bordered align-middle">
+  <thead class="rounded-header">
+    <tr>
+      <th scope="col">Selección</th>
+      <th scope="col">Fecha Generación</th>
+      <th scope="col">Destinatario</th>
+      <th scope="col">Dirección</th>
+      <th scope="col">Documento</th>
+      <th scope="col">Celular</th>
+      <th scope="col">Teléfono</th>
+      <th scope="col">Email</th>
+      <th scope="col">Unidades</th>
+      <th scope="col">Total</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let guia of listaguias">
+      <td>
+        <input type="checkbox" name="" id="" />
+      </td>
+      <td>{{ guia.fechaDeGeneracion }}</td>
+      <td>{{ guia.destinatario }}</td>
+      <td>{{ guia.direccionDestinatario }}</td>
+      <td>{{ guia.tipoDocumento + "-" + guia.documento }}</td>
+      <td>{{ guia.celular }}</td>
+      <td>{{ guia.telefono }}</td>
+      <td>{{ guia.email }}</td>
+      <td>
+        {{
+          guia.unidades +
+            "-" +
+            guia.kilosReales +
+            "-" +
+            guia.usoMedidas +
+            "-" +
+            guia.kilogramosReales
+        }}
+      </td>
+      <td>{{ guia.valor_total_declarado }}</td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+
 <!-- Modal de confirmación -->
 <div
   class="modal fade"
