@@ -114,8 +114,8 @@ export class ListaguiasComponent implements OnInit {
 
   filtrarGuias() {
     const filtro = this.filtroGuia.toLowerCase();
-    this.listaguias = this.guiasSeleccionado.filter((dest: any) =>
-      dest.nombre.toLowerCase().includes(filtro)
+    this.listaguias = this.guiassOriginales.filter((dest: any) =>
+      dest.destinatario.toLowerCase().includes(filtro)
     );
   }
 }
