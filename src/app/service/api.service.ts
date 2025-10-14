@@ -137,4 +137,14 @@ export class ApiService {
       headers,
     });
   }
+
+  public updateEstadoGuia(token: any, guia: any): Observable<any> {
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    });
+    return this.http.put<any[]>(`${this.URLAPI}/Guia/CambiarEstadoGuia`, guia, {
+      headers,
+    });
+  }
 }

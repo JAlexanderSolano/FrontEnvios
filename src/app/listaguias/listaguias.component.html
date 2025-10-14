@@ -17,22 +17,27 @@
       >
         <thead class="rounded-header">
           <tr>
+            <th scope="col" hidden="true">Id</th>
             <th scope="col">Fecha Generación</th>
             <th scope="col">Destinatario</th>
             <th scope="col">Dirección</th>
+            <th scope="col">Estado</th>
             <th scope="col">Documento</th>
             <th scope="col">Celular</th>
             <th scope="col">Teléfono</th>
             <th scope="col">Email</th>
             <th scope="col">Unidades</th>
             <th scope="col">Total</th>
+            <th scope="col">Acciones</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let guia of listaguias">
+            <td hidden="true">{{ guia.id }}</td>
             <td>{{ guia.fechaDeGeneracion }}</td>
             <td>{{ guia.destinatario }}</td>
             <td>{{ guia.direccionDestinatario }}</td>
+            <td>{{ guia.estado }}</td>
             <td>{{ guia.tipoDocumento + "-" + guia.documento }}</td>
             <td>{{ guia.celular }}</td>
             <td>{{ guia.telefono }}</td>
@@ -49,6 +54,14 @@
               }}
             </td>
             <td>{{ guia.valor_total_declarado }}</td>
+            <td>
+              <button
+                class="btn btn-sm btn-danger"
+                (click)="seleccionarGuias(guia)"
+              >
+                <i class="bi bi-trash"></i> Anular
+              </button>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -66,7 +79,7 @@
         <div class="modal-content">
           <div class="modal-header bg-danger text-white">
             <h5 class="modal-title" id="confirmModalLabel">
-              Confirmar eliminación
+              Confirmar anulación
             </h5>
             <button
               type="button"
@@ -76,7 +89,7 @@
             ></button>
           </div>
           <div class="modal-body">
-            ¿Estás seguro de que deseas eliminar al cliente
+            ¿Estás seguro de que deseas cambiar de estado de la guia del cliente
             <strong>{{ guiasSeleccionado?.destinatario }}</strong
             >?
           </div>
@@ -91,10 +104,10 @@
             <button
               type="button"
               class="btn btn-danger"
-              (click)="confirmarEliminacion()"
+              (click)="confirmarAnulacion()"
               data-bs-dismiss="modal"
             >
-              Sí, eliminar
+              Sí, anular/desanular
             </button>
           </div>
         </div>
