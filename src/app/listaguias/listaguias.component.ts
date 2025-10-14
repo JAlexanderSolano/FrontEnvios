@@ -98,17 +98,19 @@ export class ListaguiasComponent implements OnInit {
     this.CargarGuias(this.token);
   }
 
-  confirmarEliminacion() {
+  confirmarAnulacion() {
     if (this.guiasSeleccionado) {
       console.log(this.guiasSeleccionado);
+      //alert(this.guiasSeleccionado.id);
       this.apiService
-        .deleteDestinatario(this.token, this.guiasSeleccionado.id)
+        .updateEstadoGuia(this.token, this.guiasSeleccionado.id)
         .subscribe((res) => {
           this.listaguias = this.listaguias.filter(
             (c: any) => c.id !== this.guiasSeleccionado.id
           );
           this.guiasSeleccionado = null;
         });
+      this.CargarGuias(this.token);
     }
   }
 
