@@ -20,6 +20,13 @@ export class LoginComponent implements OnInit {
     usuario: '',
     contrasena: '',
     cuenta: '',
+      nombres : '',
+    documento : '',	
+    tipoDocumento : '', 
+    ciudad : '',		
+    celular : '',		
+    telefono : '',	
+    email : '',
   };
 
   response: any;
@@ -57,10 +64,20 @@ export class LoginComponent implements OnInit {
       this.localStorage.setItem('token', response.resultado.token);
       this.localStorage.setItem('usuarioIngreso', this.login.usuario);
       this.localStorage.setItem('cuenta', response.resultado.cuenta);
+      this.localStorage.setItem('nombres', response.resultado.nombres);
+      this.localStorage.setItem('documento', response.resultado.documento);
+      this.localStorage.setItem('tipoDocumento', response.resultado.tipoDocumento);
+      this.localStorage.setItem('ciudad', response.resultado.ciudad);      
+      this.localStorage.setItem('celular', response.resultado.celular);
+      this.localStorage.setItem('telefono', response.resultado.telefono);
+      this.localStorage.setItem('email', response.resultado.email);
+
+
       this.mensaje.MostrarMensaje(
         'success',
         'Usuario correcto',
-        'Bienvenido:' + this.login.usuario  + " " + this.localStorage.getItem('cuenta')
+        'Bienvenido:' + this.login.usuario  + " " + this.localStorage.getItem('cuenta') +   " " + this.localStorage.getItem('nombres') + " "+ this.localStorage.getItem('ciudad')
+
       );
       this.router.navigate(['principal']);
     }else if(response.resultado.state == 200 && response.resultado.token == '' ){
