@@ -64,7 +64,10 @@ export class LoginComponent implements OnInit {
       this.localStorage.setItem('token', response.resultado.token);
       this.localStorage.setItem('usuarioIngreso', this.login.usuario);
       this.localStorage.setItem('cuenta', response.resultado.cuenta);
+<<<<<<< HEAD
 
+=======
+>>>>>>> 325ad5ae666e8bf86cf548f1671d3864d73cedc9
       this.localStorage.setItem('nombres', response.resultado.nombres);
       this.localStorage.setItem('documento', response.resultado.documento);
       this.localStorage.setItem('tipoDocumento', response.resultado.tipoDocumento);
@@ -73,6 +76,10 @@ export class LoginComponent implements OnInit {
       this.localStorage.setItem('telefono', response.resultado.telefono);
       this.localStorage.setItem('email', response.resultado.email);
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 325ad5ae666e8bf86cf548f1671d3864d73cedc9
       this.mensaje.MostrarMensaje(
         'success',
         'Usuario correcto',
