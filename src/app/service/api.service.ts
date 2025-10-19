@@ -118,6 +118,8 @@ export class ApiService {
     });
   }
 
+  
+
   public getGuias(token: any): Observable<any> {
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,

@@ -13,17 +13,40 @@
 </div> -->
 
 
-
-
   <div class="card-body">
+    <div class="autocomplete-container">
     <div class="mb-2">
       <input
         type="text"
         class="form-control text-secondary"
         [(ngModel)]="guia.destinatario"
-        placeholder="Nombre del Destinatario *"
-      />
+        (input)="onSearchChangeDestintario($event)"
+        (focus)="onFocusDestinatario()"
+        (blur)="onBlurDestinatarios()"
+        placeholder="Buscar Destinatario..."
+      /> 
+    <div *ngIf="loadingDestinatarios" class="autocomplete-loading">
+      Cargando Destinatarios...
     </div>
+
+        <!-- Dropdown de resultados -->
+    <div *ngIf="mostrarDrpdownDestintario && destinatariosFiltrados.length > 0" 
+         class="autocomplete-dropdown">
+      <div *ngFor="let destinatario of destinatariosFiltrados" 
+           class="autocomplete-item"
+           (mousedown)="seleccionarDestintario(destinatario)">
+        {{ destinatario.nombre + " " + destinatario.documento + " " + destinatario.ciudad }} 
+      </div>
+    </div>
+
+     <div *ngIf="mostrarDrpdownDestintario && destinatariosFiltrados.length === 0 && !loading" 
+         class="autocomplete-no-results">
+      No se encontraron destintarios
+    </div>
+
+
+    </div>
+  </div>
     <div class="mb-2">
       <input
         type="text"
@@ -55,7 +78,7 @@
       <div *ngFor="let ciudad of ciudadesFiltradas" 
            class="autocomplete-item"
            (mousedown)="seleccionarCiudad(ciudad)">
-        {{ ciudad.ciudad }} <!-- Ajusta según la estructura de tu API -->
+        {{ ciudad.ciudad }} 
       </div>
     </div>
     
@@ -210,8 +233,16 @@
     <div class="dropdown-divider"></div>
     <div class="mb-2">
       <div class="d-grid gap-2">
-        <button class="btn btn-danger" (click)="ProcesarGuia()"               
+        <button class="btn btn-primary" (click)="ProcesarGuia()"               
             >Crear Guia
+        </button>
+      </div>
+    </div>
+ <div class="dropdown-divider"></div>
+    <div class="mb-2">
+      <div class="d-grid gap-2">
+        <button class="btn btn-info" (click)="calcularPresupuesto()"               
+            >Presupuesto
         </button>
       </div>
     </div>
@@ -236,7 +267,7 @@
 
     <div class="mb-2">
       <div class="d-grid gap-2">
-        <button class="btn btn-danger">Regresar</button>
+        <button class="btn btn-secondary">Regresar</button>
       </div>
     </div>
   </div>
