@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
     usuario: '',
     contrasena: '',
     cuenta: '',
-      nombres : '',
+    nombres : '',
     documento : '',	
     tipoDocumento : '', 
     ciudad : '',		
@@ -64,6 +64,7 @@ export class LoginComponent implements OnInit {
       this.localStorage.setItem('token', response.resultado.token);
       this.localStorage.setItem('usuarioIngreso', this.login.usuario);
       this.localStorage.setItem('cuenta', response.resultado.cuenta);
+
       this.localStorage.setItem('nombres', response.resultado.nombres);
       this.localStorage.setItem('documento', response.resultado.documento);
       this.localStorage.setItem('tipoDocumento', response.resultado.tipoDocumento);

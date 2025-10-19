@@ -1,6 +1,6 @@
 Esto es para cuando voy a correr el proyecto en desarollo
 ng serve --configuration development -o
-
+ng serve --no-optimization --configuration development -o
 
 Esto es para cuando voy a generar el codigo para produccion
 ng build --configuration=production

@@ -39,10 +39,19 @@ export class GuiaComponent implements OnInit  {
   ciudades: any[] = [];
   ciudadesFiltradas: any[] = [];
   searchTerm = new Subject<string>();
+
+  destinatarios: any[] = [];
+  destinatariosFiltrados: any[] = [];
+  
   mostrarDropdown = false;
   loading = false;
   ciudadSearchText: string = ''; // Texto que se muestra en el input
   ciudadSeleccionada: any = null; // Ciudad seleccionada
+
+  mostrarDrpdownDestintario = false;
+  loadingDestinatarios = false;
+  destintarioSearchText: string = '';
+  destinatarioSeleccionado: any = null;
 
 
   qrCodeUrl: string = '';
@@ -58,15 +67,12 @@ export class GuiaComponent implements OnInit  {
     this.guia.ciudad = '';
     this.guia.tipo_pago = '0';
     this.cargarCiudades();
-
+    this.cargarDestinatarios();
   }
-
-
 
   cargarCiudades(): void {
     const token = this.localStorage.getItem('token');
     this.loading = true;
-    
     this.apiService.getCiudades(token).subscribe({
       next: (ciudades) => {
         console.log('Ciudades cargadas:', ciudades);
@@ -82,16 +88,36 @@ export class GuiaComponent implements OnInit  {
     });
   }
 
+  cargarDestinatarios(): void {
+    const token = this.localStorage.getItem('token');
+    this.loadingDestinatarios = true;
+    this.apiService.getDestinatarios(token).subscribe({
+    next:(destinatarios) => {
+      this.destinatarios = destinatarios;
+      this.destinatariosFiltrados = destinatarios;
+      this.loadingDestinatarios = false;
+    } ,  error: (error) => {
+        console.error('Error cargando destinatarios:', error);
+        this.loadingDestinatarios = false;
+        this.mensaje.MostrarMensaje('error', 'Error', 'No se pudieron cargar los destinatarios');
+      }
+    });
+  }
+
+
+ //------------------------------------------------------------------------------
 
   onSearchChange(event: any): void {
     const value = event.target.value;
-    console.log('Texto de búsqueda:', value);
     this.ciudadSearchText = value;
-    
-    // Filtro directo sin Observable
     this.filtrarCiudadesEnTiempoReal(value);
   }
 
+  onSearchChangeDestintario(event: any): void {
+    const value = event.target.value;
+    this.destintarioSearchText = value;
+    this.filtrarDestinatarioEnTiempoReal(value);
+  }
 
 
   filtrarCiudadesEnTiempoReal(term: string): void {
@@ -101,12 +127,21 @@ export class GuiaComponent implements OnInit  {
       this.ciudadesFiltradas = this.ciudades.filter(ciudad => 
         ciudad.ciudad.toLowerCase().includes(term.toLowerCase())
       );
-    }
-    
-    console.log('Resultados filtrados:', this.ciudadesFiltradas);
+    }    
     this.mostrarDropdown = this.ciudadesFiltradas.length > 0;
   }
 
+  filtrarDestinatarioEnTiempoReal(term: string): void {
+    if (!term || term.trim() === '') {
+      this.destinatariosFiltrados = this.destinatarios;
+    } else {
+      this.destinatariosFiltrados = this.destinatarios.filter(nodo => 
+        nodo.nombre.toLowerCase().includes(term.toLowerCase())
+        ||  nodo.documento.toLowerCase().includes(term.toLowerCase())
+      );
+    }    
+    this.mostrarDrpdownDestintario = this.ciudadesFiltradas.length > 0;
+  }
 
 
   seleccionarCiudad(ciudad: any): void {
@@ -116,8 +151,26 @@ export class GuiaComponent implements OnInit  {
       this.mostrarDropdown = false;
   }
 
+
+  seleccionarDestintario(destinatario: any): void {
+      this.destinatarioSeleccionado = destinatario;
+      this.guia.destinatario = destinatario.nombre;
+      this.destintarioSearchText = destinatario.nombre;
+      this.mostrarDrpdownDestintario = false;
+
+      this.guia.direccion_destinatario =  destinatario.direccion;
+      this.guia.ciudad =  destinatario.ciudad;
+      this.guia.documento =  destinatario.documento;
+      this.guia.celular  =  destinatario.celular;
+      this.guia.telefono  =  destinatario.telefono;
+      this.guia.email  =  destinatario.email;
+
+      
+  }
+
+
+
   onFocus(): void {
-    console.log('Input enfocado');
     if (this.ciudadesFiltradas.length > 0) {
       this.mostrarDropdown = true;
     } else {
@@ -126,12 +179,32 @@ export class GuiaComponent implements OnInit  {
     }
   }
 
+  onFocusDestinatario(): void {
+    if (this.destinatariosFiltrados.length > 0) {
+      this.mostrarDrpdownDestintario = true;
+    } else {
+      this.destinatariosFiltrados = this.ciudades;
+      this.mostrarDrpdownDestintario= true;
+    }
+  }
+
+
+
   onBlur(): void {
-    // Pequeño delay para permitir la selección antes de ocultar
     setTimeout(() => {
       this.mostrarDropdown = false;
     }, 200);
   }
+
+
+  onBlurDestinatarios(): void {
+    setTimeout(() => {
+      this.mostrarDrpdownDestintario = false;
+    }, 200);
+  }
+
+
+
 
 
 
@@ -164,10 +237,24 @@ handleImageError(event: any): void {
     visualizarRespuesta(data: any  ) {
       this.mensaje.MostrarMensaje(
         'success',
-        'Guía procesada',
+        'Guia',
         'La guía ha sido procesada correctamente.'
       );
     }
+
+
+calcularPresupuesto(){
+  this.visualizarRespuestaPresupuesto("");
+}
+
+  visualizarRespuestaPresupuesto(data: any  ) {
+      this.mensaje.MostrarMensaje(
+        'success',
+        'Presupuesto',
+        'El presupuesto de la guia es 19.0000 pesos.'
+      );
+    }
+
 
 
  ocultarQR(): void {
