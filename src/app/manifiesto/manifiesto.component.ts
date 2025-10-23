@@ -14,6 +14,7 @@ export class ManifiestoComponent implements OnInit {
   listaguias: any[] = [];
   guiassOriginales: any[] = [];
   guiasSeleccionado: any = null;
+  seleccionGuia: any[] = [];
   nuevaGuia = {
     destinatario: '',
     direccion_destinatario: '',
@@ -34,6 +35,7 @@ export class ManifiestoComponent implements OnInit {
     observaciones: '',
     documento_remitente: '',
     cuenta: '',
+    arrayGuia: this.seleccionGuia,
   };
   token: any = '';
 
@@ -45,6 +47,17 @@ export class ManifiestoComponent implements OnInit {
   ngOnInit(): void {
     this.token = this.localStorage.getItem('token');
     this.CargarGuias(this.token);
+    this.ObtenerDatosIniciales(this.nuevaGuia);
+  }
+
+  ObtenerDatosIniciales(jsonData: any) {
+    jsonData.destinatario = this.localStorage.getItem('nombres');
+    jsonData.documento = this.localStorage.getItem('documento');
+    jsonData.tipo_documento = this.localStorage.getItem('tipoDocumento');
+    jsonData.ciudad = this.localStorage.getItem('ciudad');
+    jsonData.celular = this.localStorage.getItem('celular');
+    jsonData.telefono = this.localStorage.getItem('telefono');
+    jsonData.email = this.localStorage.getItem('email');
   }
   CargarGuias(token: any) {
     this.listaguias = [];
@@ -63,11 +76,13 @@ export class ManifiestoComponent implements OnInit {
   }
 
   agregarManifiesto() {
+    alert(JSON.stringify(this.nuevaGuia));
     this.mensajesSwal.MostrarMensaje(
       'success',
       'Manifiesto Creado',
       'El manifiesto' + ' ha sido credado con exitó'
     );
+    this.seleccionGuia = [];
 
     // this.apiService
     //   .addManifiesto(this.token, this.nuevaGuia)
@@ -101,6 +116,7 @@ export class ManifiestoComponent implements OnInit {
     //       cuenta: '',
     //     };
     //   });
+
     this.CargarGuias(this.token);
   }
 
@@ -116,6 +132,22 @@ export class ManifiestoComponent implements OnInit {
           this.guiasSeleccionado = null;
         });
     }
+  }
+  SeleccionarGuia(guia: any) {
+    let datosjson;
+    console.log(guia);
+    this.seleccionGuia.push(guia);
+    this.seleccionGuia.forEach((element) => {
+      // if (element.count() == 0) {
+      //   this.seleccionGuia.push(guia);
+      // } else {
+      //   this.seleccionGuia += guia;
+      // }
+      //this.seleccionGuia.push(guia);
+    });
+
+    datosjson = JSON.stringify(this.seleccionGuia);
+    console.log(datosjson);
   }
 
   filtrarGuias() {

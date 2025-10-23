@@ -232,7 +232,7 @@
   <tbody>
     <tr *ngFor="let guia of listaguias">
       <td>
-        <input type="checkbox" name="" id="" />
+        <input type="checkbox" name="" id="" (change)="SeleccionarGuia(guia)" />
       </td>
       <td>{{ guia.fechaDeGeneracion }}</td>
       <td>{{ guia.destinatario }}</td>
