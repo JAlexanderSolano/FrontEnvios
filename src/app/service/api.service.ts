@@ -67,7 +67,7 @@ export class ApiService {
     });
   }
 
-  // ------------------ Rafael Araujo   -------------------------------
+  // ---------------------------------------------------------------------------------
 
   public addDestinatario(token: any, destinatario: any): Observable<any> {
     const headers = new HttpHeaders({
@@ -119,7 +119,6 @@ export class ApiService {
   }
 
   
-
   public getGuias(token: any): Observable<any> {
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
@@ -149,4 +148,20 @@ export class ApiService {
       headers,
     });
   }
+
+//------------------------------------------------------------------------------------
+
+ public getCostoGuia(token: any, data: any): Observable<any> {
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    });
+    return this.http.post<any[]>(`${this.URLAPI}/Guia/GetCostoGuia`, data, {
+      headers,
+    });
+  }
+
+
 }
+
+
