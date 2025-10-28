@@ -16,7 +16,7 @@ export class ManifiestoComponent implements OnInit {
   guiasSeleccionado: any = null;
   seleccionGuia: any[] = [];
   nuevaGuia = {
-    destinatario: '',
+    cliente: '',
     direccion_destinatario: '',
     ciudad: '',
     tipo_documento: '',
@@ -51,7 +51,7 @@ export class ManifiestoComponent implements OnInit {
   }
 
   ObtenerDatosIniciales(jsonData: any) {
-    jsonData.destinatario = this.localStorage.getItem('nombres');
+    jsonData.cliente = this.localStorage.getItem('nombres');
     jsonData.documento = this.localStorage.getItem('documento');
     jsonData.tipo_documento = this.localStorage.getItem('tipoDocumento');
     jsonData.ciudad = this.localStorage.getItem('ciudad');
@@ -77,6 +77,7 @@ export class ManifiestoComponent implements OnInit {
 
   agregarManifiesto() {
     alert(JSON.stringify(this.nuevaGuia));
+    console.log(JSON.stringify(this.nuevaGuia));
     this.mensajesSwal.MostrarMensaje(
       'success',
       'Manifiesto Creado',

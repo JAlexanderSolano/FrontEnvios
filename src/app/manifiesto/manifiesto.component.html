@@ -4,13 +4,14 @@
   <div class="card-body">
     <form #destinatarioForm="ngForm">
       <div class="mb-3">
-        <label for="Destinatario" class="form-label">Destinatario</label>
+        <label for="Destinatario" class="form-label">Cliente</label>
         <input
           type="text"
           class="form-control"
-          [(ngModel)]="nuevaGuia.destinatario"
+          [(ngModel)]="nuevaGuia.cliente"
           name="Nombres"
           required
+          readonly
         />
       </div>
       <div class="mb-3">
@@ -33,6 +34,7 @@
           [(ngModel)]="nuevaGuia.tipo_documento"
           name="tipoDocumento"
           required
+          readonly
         />
       </div>
       <div class="mb-3">
@@ -43,6 +45,7 @@
           [(ngModel)]="nuevaGuia.documento"
           name="documento"
           required
+          readonly
         />
       </div>
       <div class="mb-3">
@@ -53,6 +56,7 @@
           [(ngModel)]="nuevaGuia.celular"
           name="Celular"
           required
+          readonly
         />
       </div>
       <div class="mb-3">
@@ -63,6 +67,7 @@
           [(ngModel)]="nuevaGuia.telefono"
           name="Telefono"
           required
+          readonly
         />
       </div>
       <div class="mb-3">
@@ -73,6 +78,7 @@
           [(ngModel)]="nuevaGuia.email"
           name="Email"
           required
+          readonly
         />
       </div>
       <div class="mb-3">
