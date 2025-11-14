@@ -219,6 +219,13 @@
     (ngModelChange)="filtrarGuias()"
   />
 </div>
+<button
+  type="button"
+  class="btn btn-danger"
+  (click)="SeleccionarTodas({ target: { checked: true } })"
+>
+  Seleccionar Todas
+</button>
 <!-- Lista Tabla de Manifiesto  -->
 <table class="table table-striped table-hover table-bordered align-middle">
   <thead class="rounded-header">
@@ -238,7 +245,13 @@
   <tbody>
     <tr *ngFor="let guia of listaguias">
       <td>
-        <input type="checkbox" name="" id="" (change)="SeleccionarGuia(guia)" />
+        <input
+          type="checkbox"
+          name=""
+          id=""
+          [(ngModel)]="guia.seleccionado"
+          (change)="SeleccionarGuia(guia)"
+        />
       </td>
       <td>{{ guia.fechaDeGeneracion }}</td>
       <td>{{ guia.destinatario }}</td>
