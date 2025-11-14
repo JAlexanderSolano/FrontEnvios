@@ -118,7 +118,6 @@ export class ApiService {
     });
   }
 
-  
   public getGuias(token: any): Observable<any> {
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
@@ -134,9 +133,13 @@ export class ApiService {
       Authorization: `Bearer ${token}`,
       'Content-Type': 'application/json',
     });
-    return this.http.post<any[]>(`${this.URLAPI}/Guia/GuardarGuia`, guias, {
-      headers,
-    });
+    return this.http.post<any[]>(
+      `${this.URLAPI}/Manifiesto/GuardarManifiesto`,
+      guias,
+      {
+        headers,
+      }
+    );
   }
 
   public updateEstadoGuia(token: any, guia: any): Observable<any> {
@@ -144,14 +147,21 @@ export class ApiService {
       Authorization: `Bearer ${token}`,
       'Content-Type': 'application/json',
     });
-    return this.http.put<any[]>(`${this.URLAPI}/Guia/CambiarEstadoGuia`, guia, {
-      headers,
-    });
+    let jsonData = {
+      id: guia.id,
+    };
+    return this.http.put<any>(
+      `${this.URLAPI}/Guia/CambiarEstadoGuia`,
+      jsonData,
+      {
+        headers,
+      }
+    );
   }
 
-//------------------------------------------------------------------------------------
+  //------------------------------------------------------------------------------------
 
- public getCostoGuia(token: any, data: any): Observable<any> {
+  public getCostoGuia(token: any, data: any): Observable<any> {
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
       'Content-Type': 'application/json',
@@ -160,8 +170,4 @@ export class ApiService {
       headers,
     });
   }
-
-
 }
-
-

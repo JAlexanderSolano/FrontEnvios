@@ -38,7 +38,7 @@ export class ManifiestoComponent implements OnInit {
     arrayGuia: this.seleccionGuia,
   };
   token: any = '';
-
+  response: object = {};
   constructor(
     private apiService: ApiService,
     private localStorage: LocalStorageService,
@@ -48,6 +48,7 @@ export class ManifiestoComponent implements OnInit {
     this.token = this.localStorage.getItem('token');
     this.CargarGuias(this.token);
     this.ObtenerDatosIniciales(this.nuevaGuia);
+    this.response = {};
   }
 
   ObtenerDatosIniciales(jsonData: any) {
@@ -58,6 +59,7 @@ export class ManifiestoComponent implements OnInit {
     jsonData.celular = this.localStorage.getItem('celular');
     jsonData.telefono = this.localStorage.getItem('telefono');
     jsonData.email = this.localStorage.getItem('email');
+    jsonData.cuenta = this.localStorage.getItem('cuenta');
   }
   CargarGuias(token: any) {
     this.listaguias = [];
@@ -76,49 +78,23 @@ export class ManifiestoComponent implements OnInit {
   }
 
   agregarManifiesto() {
-    alert(JSON.stringify(this.nuevaGuia));
     console.log(JSON.stringify(this.nuevaGuia));
-    this.mensajesSwal.MostrarMensaje(
-      'success',
-      'Manifiesto Creado',
-      'El manifiesto' + ' ha sido credado con exitó'
-    );
-    this.seleccionGuia = [];
-
-    // this.apiService
-    //   .addManifiesto(this.token, this.nuevaGuia)
-    //   .subscribe((res: any) => {
-    //     this.mensajesSwal.MostrarMensaje(
-    //       'success',
-    //       'Destinatario Creado',
-    //       'El destinatario ' +
-    //         this.nuevaGuia.destinatario +
-    //         ' ha sido credado con exitó'
-    //     );
-    //     this.nuevaGuia = {
-    //       destinatario: '',
-    //       direccion_destinatario: '',
-    //       ciudad: '',
-    //       tipo_documento: '',
-    //       documento: '',
-    //       celular: '',
-    //       telefono: '',
-    //       email: '',
-    //       tipo_pago: '',
-    //       carta_porte: '',
-    //       valor_total_declarado: '',
-    //       unidades: '',
-    //       kilos_reales: '',
-    //       uso_medidas: '',
-    //       kilogramos_reales: '',
-    //       descripcion_contenido: '',
-    //       observaciones: '',
-    //       documento_remitente: '',
-    //       cuenta: '',
-    //     };
-    //   });
+    this.apiService
+      .addManifiesto(this.token, this.nuevaGuia)
+      .subscribe((data: any) => {
+        this.response = data;
+        this.MostrarMensaje(this.response);
+        this.seleccionGuia = [];
+      });
 
     this.CargarGuias(this.token);
+  }
+  MostrarMensaje(response: any) {
+    this.mensajesSwal.MostrarMensaje(
+      'success',
+      'Manifiesto creado',
+      response.resultado.resultado
+    );
   }
 
   confirmarEliminacion() {
@@ -137,20 +113,31 @@ export class ManifiestoComponent implements OnInit {
   SeleccionarGuia(guia: any) {
     let datosjson;
     console.log(guia);
-    this.seleccionGuia.push(guia);
-    this.seleccionGuia.forEach((element) => {
-      // if (element.count() == 0) {
-      //   this.seleccionGuia.push(guia);
-      // } else {
-      //   this.seleccionGuia += guia;
-      // }
-      //this.seleccionGuia.push(guia);
-    });
+
+    if (guia.seleccionado) {
+      const existe = this.seleccionGuia.some((g) => g.id === guia.id);
+      if (!existe) {
+        this.seleccionGuia.push(guia);
+      }
+    } else {
+      this.seleccionGuia = this.seleccionGuia.filter((g) => g.id !== guia.id);
+    }
 
     datosjson = JSON.stringify(this.seleccionGuia);
     console.log(datosjson);
   }
+  SeleccionarTodas(event: any) {
+    const seleccionado = event.target.checked;
 
+    // Marcar o desmarcar todos los checkboxes
+    this.listaguias.forEach((guia: any) => (guia.seleccionado = seleccionado));
+
+    // Si está marcado, copiamos todos los objetos directamente
+    this.seleccionGuia = seleccionado ? [...this.listaguias] : [];
+
+    this.nuevaGuia.arrayGuia = [...this.seleccionGuia];
+    console.log('Guías seleccionadas:', this.seleccionGuia);
+  }
   filtrarGuias() {
     const filtro = this.filtroGuia.toLowerCase();
     this.listaguias = this.guiassOriginales.filter((dest: any) =>
