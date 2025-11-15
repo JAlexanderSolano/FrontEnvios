@@ -128,6 +128,16 @@ export class ApiService {
     });
   }
 
+  public getGuiasSinManifiesto(token: any): Observable<any> {
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    });
+    return this.http.get<any[]>(`${this.URLAPI}/Guia/GetGuiasSinManifiesto`, {
+      headers,
+    });
+  }
+
   public addManifiesto(token: any, guias: any): Observable<any> {
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
