@@ -37,6 +37,9 @@ export class ManifiestoComponent implements OnInit {
     cuenta: '',
     arrayGuia: this.seleccionGuia,
   };
+  dataCliente = {
+    cliente: '',
+  };
   token: any = '';
   response: object = {};
   constructor(
@@ -47,11 +50,11 @@ export class ManifiestoComponent implements OnInit {
   ngOnInit(): void {
     this.token = this.localStorage.getItem('token');
     this.CargarGuias(this.token);
-    this.ObtenerDatosIniciales(this.nuevaGuia);
+    this.ObtenerDatosIniciales(this.nuevaGuia, this.dataCliente);
     this.response = {};
   }
 
-  ObtenerDatosIniciales(jsonData: any) {
+  ObtenerDatosIniciales(jsonData: any, jsoncliente: any) {
     jsonData.cliente = this.localStorage.getItem('nombres');
     jsonData.documento = this.localStorage.getItem('documento');
     jsonData.tipo_documento = this.localStorage.getItem('tipoDocumento');
@@ -60,11 +63,25 @@ export class ManifiestoComponent implements OnInit {
     jsonData.telefono = this.localStorage.getItem('telefono');
     jsonData.email = this.localStorage.getItem('email');
     jsonData.cuenta = this.localStorage.getItem('cuenta');
+    jsoncliente.cliente =
+      jsonData.cliente +
+      ' ' +
+      jsonData.tipo_documento +
+      ' (' +
+      jsonData.documento +
+      ') Cel: ' +
+      jsonData.celular +
+      ' Tel: ' +
+      jsonData.telefono +
+      '\nEmail: ' +
+      jsonData.email +
+      ' Cuenta: ' +
+      jsonData.cuenta;
   }
   CargarGuias(token: any) {
     this.listaguias = [];
     this.guiassOriginales = [];
-    this.apiService.getGuias(token).subscribe((data) => {
+    this.apiService.getGuiasSinManifiesto(token).subscribe((data) => {
       this.guiassOriginales = data;
       this.listaguias = [...data];
     });
@@ -85,9 +102,10 @@ export class ManifiestoComponent implements OnInit {
         this.response = data;
         this.MostrarMensaje(this.response);
         this.seleccionGuia = [];
+        this.nuevaGuia.direccion_destinatario = '';
+        this.nuevaGuia.observaciones = '';
+        this.CargarGuias(this.token);
       });
-
-    this.CargarGuias(this.token);
   }
   MostrarMensaje(response: any) {
     this.mensajesSwal.MostrarMensaje(
@@ -140,8 +158,10 @@ export class ManifiestoComponent implements OnInit {
   }
   filtrarGuias() {
     const filtro = this.filtroGuia.toLowerCase();
-    this.listaguias = this.guiassOriginales.filter((dest: any) =>
-      dest.destinatario.toLowerCase().includes(filtro)
+    this.listaguias = this.guiassOriginales.filter(
+      (dest: any) =>
+        dest.destinatario.toLowerCase().includes(filtro) ||
+        dest.documento.toLowerCase().includes(filtro)
     );
   }
 }

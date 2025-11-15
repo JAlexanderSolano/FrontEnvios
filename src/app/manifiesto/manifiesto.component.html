@@ -5,19 +5,16 @@
     <form #destinatarioForm="ngForm">
       <div class="mb-3">
         <label for="Destinatario" class="form-label">Cliente</label>
-        <input
-          type="text"
+        <textarea
           class="form-control"
-          [(ngModel)]="nuevaGuia.cliente"
+          [(ngModel)]="dataCliente.cliente"
           name="Nombres"
           required
           readonly
-        />
+        ></textarea>
       </div>
       <div class="mb-3">
-        <label for="direccion_destinatario" class="form-label"
-          >Dirección destinatario</label
-        >
+        <label for="direccion_destinatario" class="form-label">Dirección</label>
         <input
           type="text"
           class="form-control"
@@ -26,7 +23,7 @@
           required
         />
       </div>
-      <div class="mb-3">
+      <div class="mb-3 ocultar">
         <label for="tipoDocumento" class="form-label">Tipo Documento</label>
         <input
           type="text"
@@ -37,7 +34,7 @@
           readonly
         />
       </div>
-      <div class="mb-3">
+      <div class="mb-3 ocultar">
         <label for="documento" class="form-label">Documento</label>
         <input
           type="text"
@@ -48,7 +45,7 @@
           readonly
         />
       </div>
-      <div class="mb-3">
+      <div class="mb-3 ocultar">
         <label for="celular" class="form-label">Celular</label>
         <input
           type="text"
@@ -59,7 +56,7 @@
           readonly
         />
       </div>
-      <div class="mb-3">
+      <div class="mb-3 ocultar">
         <label for="Nombres" class="form-label">Telefono</label>
         <input
           type="text"
@@ -70,8 +67,8 @@
           readonly
         />
       </div>
-      <div class="mb-3">
-        <label for="Nombres" class="form-label">Email</label>
+      <div class="mb-3 ocultar">
+        <label for="Email" class="form-label">Email</label>
         <input
           type="text"
           class="form-control"
@@ -81,7 +78,7 @@
           readonly
         />
       </div>
-      <div class="mb-3">
+      <div class="mb-3 ocultar">
         <label for="Nombres" class="form-label">Tipo Pago</label>
         <input
           type="text"
@@ -91,7 +88,7 @@
           required
         />
       </div>
-      <div class="mb-3">
+      <div class="mb-3 ocultar">
         <label for="carta_porte" class="form-label">Carta Porte</label>
         <input
           type="text"
@@ -101,7 +98,7 @@
           required
         />
       </div>
-      <div class="mb-3">
+      <div class="mb-3 ocultar">
         <label for="valor_total_declarado" class="form-label"
           >Total Declarado</label
         >
@@ -113,7 +110,7 @@
           required
         />
       </div>
-      <div class="mb-3">
+      <div class="mb-3 ocultar">
         <label for="unidades" class="form-label">Unidades</label>
         <input
           type="text"
@@ -123,7 +120,7 @@
           required
         />
       </div>
-      <div class="mb-3">
+      <div class="mb-3 ocultar">
         <label for="kilos_reales" class="form-label">Kilos Reales</label>
         <input
           type="text"
@@ -133,7 +130,7 @@
           required
         />
       </div>
-      <div class="mb-3">
+      <div class="mb-3 ocultar">
         <label for="uso_medidas" class="form-label">Uso Medidas</label>
         <input
           type="text"
@@ -143,7 +140,7 @@
           required
         />
       </div>
-      <div class="mb-3">
+      <div class="mb-3 ocultar">
         <label for="kilogramos_reales" class="form-label"
           >Kilogramos Reales</label
         >
@@ -155,7 +152,7 @@
           required
         />
       </div>
-      <div class="mb-3">
+      <div class="mb-3 ocultar">
         <label for="descripcion_contenido" class="form-label"
           >Descripción Contenido</label
         >
@@ -169,15 +166,14 @@
       </div>
       <div class="mb-3">
         <label for="observaciones" class="form-label">Observaciones</label>
-        <input
-          type="text"
+        <textarea
           class="form-control"
           [(ngModel)]="nuevaGuia.observaciones"
           name="observaciones"
           required
-        />
+        ></textarea>
       </div>
-      <div class="mb-3">
+      <div class="mb-3 ocultar">
         <label for="documento_remitente" class="form-label"
           >Documento Remitente</label
         >
@@ -189,7 +185,7 @@
           required
         />
       </div>
-      <div class="mb-3">
+      <div class="mb-3 ocultar">
         <label for="cuenta" class="form-label">Cuenta</label>
         <input
           type="text"
@@ -214,7 +210,7 @@
   <input
     type="text"
     class="form-control"
-    placeholder="Buscar destinatario..."
+    placeholder="Buscar destinatario o N° documento..."
     [(ngModel)]="filtroGuia"
     (ngModelChange)="filtrarGuias()"
   />
@@ -240,6 +236,7 @@
       <th scope="col">Email</th>
       <th scope="col">Unidades</th>
       <th scope="col">Total</th>
+      <th scope="col">Estado</th>
     </tr>
   </thead>
   <tbody>
@@ -255,7 +252,7 @@
       </td>
       <td>{{ guia.fechaDeGeneracion }}</td>
       <td>{{ guia.destinatario }}</td>
-      <td>{{ guia.direccionDestinatario }}</td>
+      <td>{{ guia.direccionDestinatario + "-" + guia.ciudad }}</td>
       <td>{{ guia.tipoDocumento + "-" + guia.documento }}</td>
       <td>{{ guia.celular }}</td>
       <td>{{ guia.telefono }}</td>
@@ -271,7 +268,8 @@
             guia.kilogramosReales
         }}
       </td>
-      <td>{{ guia.valor_total_declarado }}</td>
+      <td>{{ guia.valorTotalDeclarado }}</td>
+      <td>{{ guia.estado }}</td>
     </tr>
   </tbody>
 </table>
