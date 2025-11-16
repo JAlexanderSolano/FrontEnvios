@@ -25,6 +25,7 @@ export class AppComponent implements OnInit {
           '/destinatario',
           '/lista-guias',
           '/manifiesto',
+          '/lista-manifiesto',
         ];
         this.showheader = !rutasSinHeaer.includes(event.url);
       });

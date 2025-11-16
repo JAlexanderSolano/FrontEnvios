@@ -38,6 +38,10 @@ export class PrincipalComponent implements OnInit {
     this.urlFrame =
       this.sanitizer.bypassSecurityTrustResourceUrl('/manifiesto');
   }
+  listaManifiesto() {
+    this.urlFrame =
+      this.sanitizer.bypassSecurityTrustResourceUrl('/lista-manifiesto');
+  }
 
   cerrarSesion() {
     this.router.navigate(['login']);
