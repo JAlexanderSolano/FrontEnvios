@@ -9,6 +9,7 @@ import { ClientesListComponent } from './clientes-list/clientes-list.component';
 import { DestinatarioComponent } from './destinatario/destinatario.component';
 import { ListaguiasComponent } from './listaguias/listaguias.component';
 import { ManifiestoComponent } from './manifiesto/manifiesto.component';
+import { ListamanifiestoComponent } from './listamanifiesto/listamanifiesto.component';
 
 const routes: Routes = [
   {
@@ -43,6 +44,10 @@ const routes: Routes = [
   {
     path: 'manifiesto',
     component: ManifiestoComponent,
+  },
+  {
+    path: 'lista-manifiesto',
+    component: ListamanifiestoComponent,
   },
 ];
 

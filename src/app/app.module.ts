@@ -23,6 +23,7 @@ import { ClientesListComponent } from './clientes-list/clientes-list.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DestinatarioComponent } from './destinatario/destinatario.component';
 import { ManifiestoComponent } from './manifiesto/manifiesto.component';
+import { ListamanifiestoComponent } from './listamanifiesto/listamanifiesto.component';
 
 
 
@@ -39,6 +40,7 @@ import { ManifiestoComponent } from './manifiesto/manifiesto.component';
     ClientesListComponent,
     DestinatarioComponent,
     ManifiestoComponent,
+    ListamanifiestoComponent,
   ],
   imports: [
     BrowserModule,
