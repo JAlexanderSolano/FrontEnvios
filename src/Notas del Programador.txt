@@ -53,3 +53,7 @@ nombre de un archivo en color rojo indicnado que debe ser agregado)
 9 git push origin nombreRamaNueva
 
 10 Se hace el proceso para hacer el PR en Git
+
+-----------------------------------------------
+----------------------------------------------
+git chechkout -b Dllo_RA_08
