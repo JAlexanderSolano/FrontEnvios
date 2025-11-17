@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
+import { MensajesSwalComponent } from '../mensajes-swal/mensajes-swal.component';
 
 @Component({
   selector: 'app-principal',
@@ -12,9 +13,16 @@ import { NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
 })
 export class PrincipalComponent implements OnInit {
   active = 'top';
-  urlFrame: any = '';
-  constructor(private sanitizer: DomSanitizer, private router: Router) {}
-  ngOnInit(): void {}
+  urlFrame: any;
+  constructor(
+    private sanitizer: DomSanitizer,
+    private router: Router,
+    private mensajes: MensajesSwalComponent
+  ) {}
+  ngOnInit(): void {
+    this.urlFrame =
+      this.sanitizer.bypassSecurityTrustResourceUrl('about:blank');
+  }
 
   solicitarGuia() {
     this.urlFrame = this.sanitizer.bypassSecurityTrustResourceUrl('/guia');
@@ -44,6 +52,6 @@ export class PrincipalComponent implements OnInit {
   }
 
   cerrarSesion() {
-    this.router.navigate(['login']);
+    this.mensajes.MensajeSalida();
   }
 }

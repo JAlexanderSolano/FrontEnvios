@@ -6,9 +6,10 @@ import { LocalStorageService } from '../service/localstorage.service';
   selector: 'app-mensajes-swal',
   standalone: false,
   templateUrl: './mensajes-swal.component.html',
-  styleUrl: './mensajes-swal.component.css'
+  styleUrl: './mensajes-swal.component.css',
 })
-export class MensajesSwalComponent { constructor(
+export class MensajesSwalComponent {
+  constructor(
     private router: Router,
     private localStorage: LocalStorageService
   ) {}
@@ -65,10 +66,17 @@ export class MensajesSwalComponent { constructor(
       },
       willClose: () => {
         this.localStorage.removeItem('usuarioIngreso');
+        this.localStorage.removeItem('cuenta');
+        this.localStorage.removeItem('nombres');
+        this.localStorage.removeItem('documento');
+        this.localStorage.removeItem('tipoDocumento');
+        this.localStorage.removeItem('ciudad');
+        this.localStorage.removeItem('celular');
+        this.localStorage.removeItem('telefono');
+        this.localStorage.removeItem('email');
         this.localStorage.removeItem('token');
-        this.router.navigate(['']);
+        this.router.navigate(['login']);
       },
     });
   }
-
 }
