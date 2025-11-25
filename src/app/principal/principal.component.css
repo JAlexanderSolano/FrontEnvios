@@ -1,21 +1,97 @@
-.estilonav {
-  color: red;
+/* Layout principal */
+.izquierda {
+  background: #f7f7f7;
+  height: 100vh;
+  overflow-y: auto;
+  border-right: 1px solid #ddd;
+}
+
+.derecha {
+  height: 100vh;
+  overflow-y: auto;
+}
+
+/* Estilo del menú izquierdo */
+.nav.nav-underline.flex-column .nav-link {
+  padding: 10px 12px;
+  font-weight: 500;
+  color: #444;
+}
+
+.nav.nav-underline.flex-column .nav-link:hover {
+  background-color: #e2e2e2;
+  border-radius: 6px;
+}
+
+/* Botones del menú */
+.accionPush {
+  width: 100%;
+  text-align: left;
+}
+
+.accionPush:hover {
+  background-color: #495057;
+  color: white;
+}
+
+/* Tarjetas con estilo más moderno */
+.card {
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+}
+
+/* Scroll más moderno */
+::-webkit-scrollbar {
+  width: 7px;
+}
+::-webkit-scrollbar-thumb {
+  background: #999;
+  border-radius: 10px;
+}
+
+/* Responsive: menú de la izquierda se vuelve horizontal en móvil */
+@media (max-width: 768px) {
+  .izquierda {
+    height: auto;
+    border-right: none;
+    border-bottom: 1px solid #ddd;
+  }
+}
+
+/* ==== ESTILO PARA MENU LATERAL PRINCIPAL ==== */
+
+/* Enlaces principales del menú */
+.nav.nav-underline.flex-column .nav-link {
+  text-decoration: none !important; /* Quita el subrayado */
+  color: #c30000 !important; /* Rojo del logo */
+  cursor: pointer !important; /* Mano en hover */
+  font-weight: 600 !important;
+}
+
+/* Hover */
+.nav.nav-underline.flex-column .nav-link:hover {
+  color: #e60000 !important; /* Un rojo más vivo */
+  background-color: #ffe6e6 !important; /* Fondeado sutil */
+  border-radius: 6px;
+}
+
+/* Estado activo si quieres que quede marcado cuando se seleciona */
+.nav.nav-underline.flex-column .nav-link.active {
+  background-color: #c30000 !important;
+  color: #fff !important;
+  border-radius: 6px;
+}
+
+/* Elementos dentro del dropdown */
+.ngb-dropdown-menu button,
+.ngb-dropdown-menu .accionPush {
   cursor: pointer;
 }
-.accionPush:active {
-  background-color: red;
-  color: white;
-}
-.accionPush:hover {
-  background-color: rgba(33, 37, 41, 0.75);
-  color: white;
-}
-.izquierda {
-  scrollbar-width: none;
-  height: auto;
-  background-color: #ddd;
-}
-.derecha {
-  height: 83vh;
-  scrollbar-width: none;
+
+/* Hover para los ítems dentro del dropdown */
+.ngb-dropdown-menu button:hover,
+.ngb-dropdown-menu .accionPush:hover {
+  background-color: #e60000 !important;
+  color: #fff !important;
 }

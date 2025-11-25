@@ -2,19 +2,23 @@
   ngbNav
   #nav="ngbNav"
   [activeId]="1"
-  class="nav justify-content-center bg-secondary"
+  class="nav justify-content-center bg-secondary w-100 py-2 shadow-sm topnav"
 >
   <li [ngbNavItem]="1">
-    <a ngbNavLink>
-      <button class="btn text-bg-secondary">INICIO</button>
+    <a ngbNavLink [class.disabled]="ui.mostrarNav">
+      <button class="btn text-bg-secondary" [disabled]="ui.mostrarNav">
+        INICIO
+      </button>
     </a>
     <ng-template ngbNavContent>
       <p>iframe de inicio</p>
     </ng-template>
   </li>
   <li [ngbNavItem]="2">
-    <a ngbNavLink>
-      <button class="btn text-bg-secondary">NOSOTROS</button>
+    <a ngbNavLink [class.disabled]="ui.mostrarNav">
+      <button class="btn text-bg-secondary" [disabled]="ui.mostrarNav">
+        NOSOTROS
+      </button>
     </a>
 
     <ng-template ngbNavContent>
@@ -22,48 +26,61 @@
     </ng-template>
   </li>
   <li [ngbNavItem]="3">
-    <a ngbNavLink>
-      <button class="btn text-bg-secondary">SERVICIOS</button>
+    <a ngbNavLink [class.disabled]="ui.mostrarNav">
+      <button class="btn text-bg-secondary" [disabled]="ui.mostrarNav">
+        SERVICIOS
+      </button>
     </a>
     <ng-template ngbNavContent>
       <p>iframe de servicios</p>
     </ng-template>
   </li>
   <li [ngbNavItem]="4">
-    <a ngbNavLink>
-      <button class="btn text-bg-secondary">TARIFAS</button>
+    <a ngbNavLink [class.disabled]="ui.mostrarNav">
+      <button class="btn text-bg-secondary" [disabled]="ui.mostrarNav">
+        TARIFAS
+      </button>
     </a>
     <ng-template ngbNavContent>
       <p>iframe de Tarifas</p>
     </ng-template>
   </li>
   <li [ngbNavItem]="5">
-    <a ngbNavLink>
-      <button class="btn text-bg-secondary">COTIZADOR</button>
+    <a ngbNavLink [class.disabled]="ui.mostrarNav">
+      <button class="btn text-bg-secondary" [disabled]="ui.mostrarNav">
+        COTIZADOR
+      </button>
     </a>
     <ng-template ngbNavContent>
       <p>iframe de cotizador</p>
     </ng-template>
   </li>
   <li [ngbNavItem]="6">
-      <a ngbNavLink>
-        <button class="btn text-bg-secondary"  (click)="IFrameContacto()">
-          CONTACTO
-        </button>
+    <a ngbNavLink [class.disabled]="ui.mostrarNav">
+      <button
+        class="btn text-bg-secondary"
+        [disabled]="ui.mostrarNav"
+        (click)="IFrameContacto()"
+      >
+        CONTACTO
+      </button>
     </a>
     <ng-template ngbNavContent>
-          <iframe
-            [src]="urlFrame"
-            frameborder="0"
-            width="100%"
-            style="height: 99vh"
-          ></iframe>
-        </ng-template>
-
+      <iframe
+        [src]="urlFrame"
+        frameborder="0"
+        width="100%"
+        style="width: 100%; height: calc(100vh - 20px)"
+      ></iframe>
+    </ng-template>
   </li>
   <li [ngbNavItem]="7">
-    <a ngbNavLink>
-      <button class="btn btn-light text-danger" (click)="IFrameLogin()">
+    <a ngbNavLink [class.disabled]="ui.mostrarNav ? true : false">
+      <button
+        class="btn btn-light text-danger"
+        (click)="IFrameLogin()"
+        [disabled]="ui.mostrarNav ? true : false"
+      >
         Zona Clientes
       </button>
     </a>
@@ -72,7 +89,7 @@
         [src]="urlFrame"
         frameborder="0"
         width="100%"
-        style="height: 99vh"
+        style="width: 100%; height: calc(100vh - 20px)"
       ></iframe>
     </ng-template>
   </li>

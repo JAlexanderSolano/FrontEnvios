@@ -1,32 +1,36 @@
-<div class="container" style="height: 99vh">
+<div class="container-fluid p-0" style="height: 99vh">
   <header *ngIf="showheader">
-    <ul ngbNav #nav="ngbNav" class="nav justify-content-center colorItems">
-      <li [ngbNavItem]="1" class="itemIco">
+    <ul
+      ngbNav
+      #nav="ngbNav"
+      class="nav d-flex align-items-center justify-content-between px-3 colorItems flex-wrap"
+    >
+      <li ngbNavItem class="itemIco me-auto">
         <a ngbNavLink>
           <div>
             <img
               src="data:image/png;base64,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"
               alt="favicon.ico"
-              class="img-fluid"
+              class="brand-logo"
             />
           </div>
         </a>
       </li>
-      <li [ngbNavItem]="2">
+      <li ngbNavItem>
         <a ngbNavLink>
           <div>
             <h6>{{ correooficial }}</h6>
           </div>
         </a>
       </li>
-      <li [ngbNavItem]="3">
+      <li ngbNavItem>
         <a ngbNavLink>
           <div>
             <h6>(+57) 314344933</h6>
           </div>
         </a>
       </li>
-      <li [ngbNavItem]="4">
+      <li ngbNavItem>
         <a ngbNavLink>
           <div>
             <h6>(601)44940093</h6>
@@ -34,7 +38,6 @@
         </a>
       </li>
     </ul>
-    <div [ngbNavOutlet]="nav" class="mt-2"></div>
   </header>
   <router-outlet />
 </div>

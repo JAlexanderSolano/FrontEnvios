@@ -4,6 +4,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
 import { MensajesSwalComponent } from '../mensajes-swal/mensajes-swal.component';
+import { UiServiceService } from '../service/ui.service.service';
 
 @Component({
   selector: 'app-principal',
@@ -17,9 +18,11 @@ export class PrincipalComponent implements OnInit {
   constructor(
     private sanitizer: DomSanitizer,
     private router: Router,
-    private mensajes: MensajesSwalComponent
+    private mensajes: MensajesSwalComponent,
+    private ui: UiServiceService
   ) {}
   ngOnInit(): void {
+    this.ui.ocultarNav();
     this.urlFrame =
       this.sanitizer.bypassSecurityTrustResourceUrl('about:blank');
   }

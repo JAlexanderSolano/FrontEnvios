@@ -1,19 +1,39 @@
+/* Color y estilo general de los textos del menú */
 .colorItems a h6 {
   color: black;
   text-decoration: none;
+  margin: 0;
+  font-weight: 500;
 }
-.itemIco {
-  margin-right: 25%;
-  height: 7.5vh;
-}
-.itemIco div {
-  width: auto;
-  height: auto;
+
+/* Contenedor del logo: NO crecer */
+.itemIco,
+.itemIco * {
+  padding: 0 !important;
+  margin: 0 !important;
+  max-height: 45px !important;
+  overflow: hidden;
   display: flex;
+  align-items: center;
 }
-.itemIco img {
-  width: 45%;
-  height: auto;
+
+/* Logo súper reducido y forzado */
+.brand-logo {
+  height: 32px !important; /* Ajustable */
+  width: auto !important;
+  object-fit: contain;
   display: block;
-  margin-top: -16%;
+}
+/* Ajuste en tablets */
+@media (max-width: 992px) {
+  .brand-logo {
+    max-width: 90px;
+  }
+}
+
+/* Ajuste en celulares */
+@media (max-width: 576px) {
+  .brand-logo {
+    max-width: 70px;
+  }
 }

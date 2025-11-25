@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { LocalStorageService } from '../service/localstorage.service';
+import { UiServiceService } from '../service/ui.service.service';
 @Component({
   selector: 'app-mensajes-swal',
   standalone: false,
@@ -11,7 +12,8 @@ import { LocalStorageService } from '../service/localstorage.service';
 export class MensajesSwalComponent {
   constructor(
     private router: Router,
-    private localStorage: LocalStorageService
+    private localStorage: LocalStorageService,
+    private ui: UiServiceService
   ) {}
   MostrarMensaje(icon: any, titulo: any, mensaje: any) {
     Swal.fire({
@@ -75,6 +77,7 @@ export class MensajesSwalComponent {
         this.localStorage.removeItem('telefono');
         this.localStorage.removeItem('email');
         this.localStorage.removeItem('token');
+        this.ui.mostrarNavegacion();
         this.router.navigate(['login']);
       },
     });

@@ -1,0 +1,12 @@
+.topnav button {
+  font-weight: 500;
+  padding: 10px 20px;
+}
+
+.topnav button:hover {
+  background-color: rgba(255, 255, 255, 0.781);
+  color: rgba(214, 28, 28, 0.945);
+}
+.topnav button:active {
+  background-color: rgba(255, 255, 255, 0.836);
+}
